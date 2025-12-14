@@ -22,3 +22,16 @@ C:\Work\GamaLearn\LibraryManagementSystem\LibraryManagementSystem.Core\obj\Debug
 C:\Work\GamaLearn\LibraryManagementSystem\LibraryManagementSystem.Core\obj\Debug\net6.0\refint\LibraryManagementSystem.Core.dll
 C:\Work\GamaLearn\LibraryManagementSystem\LibraryManagementSystem.Core\obj\Debug\net6.0\LibraryManagementSystem.Core.pdb
 C:\Work\GamaLearn\LibraryManagementSystem\LibraryManagementSystem.Core\obj\Debug\net6.0\ref\LibraryManagementSystem.Core.dll
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\bin\Debug\net6.0\LibraryManagementSystem.Core.deps.json
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\bin\Debug\net6.0\LibraryManagementSystem.Core.dll
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\bin\Debug\net6.0\LibraryManagementSystem.Core.pdb
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\obj\Debug\net6.0\LibraryManagementSystem.Core.csproj.AssemblyReference.cache
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\obj\Debug\net6.0\LibraryManagementSystem.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\obj\Debug\net6.0\LibraryManagementSystem.Core.AssemblyInfoInputs.cache
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\obj\Debug\net6.0\LibraryManagementSystem.Core.AssemblyInfo.cs
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\obj\Debug\net6.0\LibraryManagementSystem.Core.csproj.CoreCompileInputs.cache
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\obj\Debug\net6.0\LibraryManagementSystem.Core.sourcelink.json
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\obj\Debug\net6.0\LibraryManagementSystem.Core.dll
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\obj\Debug\net6.0\refint\LibraryManagementSystem.Core.dll
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\obj\Debug\net6.0\LibraryManagementSystem.Core.pdb
+D:\Work\Library-Management-System\LibraryManagementSystem.Core\obj\Debug\net6.0\ref\LibraryManagementSystem.Core.dll

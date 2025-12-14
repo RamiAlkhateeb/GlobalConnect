@@ -1,7 +1,11 @@
-using LibraryManagementSystem.Core.Interfaces;
-using LibraryManagementSystem.Infrastructure.Data;
+using Application.Modules.Identity.Interfaces;
+using GlobalConnect.Application.Modules.Provider.Interfaces;
+using GlobalConnect.Domain.Interfaces;
+using GlobalConnect.Infrastructure.Data;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +15,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IBookRepository, BookRepository>();
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IProviderService, ProviderService>();
 
-builder.Services.AddDbContext<BooksDatabaseContext>(options =>
+builder.Services.AddDbContext<GlobalConnectDbContext>(options =>
 {
     //options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnectionLocal"));
