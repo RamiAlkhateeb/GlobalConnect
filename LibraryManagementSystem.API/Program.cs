@@ -5,8 +5,10 @@ using GlobalConnect.Infrastructure.Data;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
+using Application.Common.Interfaces; // New
+using FluentValidation;                          // New
+using FluentValidation.AspNetCore;
+using Application.Modules.Identity.DTOs;               // New
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +19,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IProviderService, ProviderService>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequest>(); // Finds all validators
 
 builder.Services.AddDbContext<GlobalConnectDbContext>(options =>
 {

@@ -1,5 +1,6 @@
 ﻿using Application.Modules.Identity.DTOs;
 using Application.Modules.Identity.Interfaces;
+using Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,18 +20,19 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
             try
             {
                 var response = await _authService.RegisterAsync(request);
                 return CreatedAtAction(nameof(Register), new { id = response.UserId }, response);
             }
-            catch (Exception ex)
+            catch (UserAlreadyExistsException ex)
             {
-                // In a real app, use a global exception handler. 
-                // For now, we manually return BadRequest for simplicity.
+                // Specific HTTP status code for existing resource
+                return Conflict(new { message = ex.Message });
+            }
+            catch (DomainException ex)
+            {
+                // Handle other business rule exceptions
                 return BadRequest(new { message = ex.Message });
             }
         }

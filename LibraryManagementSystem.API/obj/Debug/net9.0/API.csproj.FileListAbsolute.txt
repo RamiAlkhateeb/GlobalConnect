@@ -241,3 +241,7 @@ D:\Work\GlobalConnect\LibraryManagementSystem.API\bin\Debug\net9.0\zh-Hant\Micro
 D:\Work\GlobalConnect\LibraryManagementSystem.API\bin\Debug\net9.0\runtimes\browser-wasm\nativeassets\net9.0\e_sqlite3.a
 D:\Work\GlobalConnect\LibraryManagementSystem.API\bin\Debug\net9.0\runtimes\linux-musl-s390x\native\libe_sqlite3.so
 D:\Work\GlobalConnect\LibraryManagementSystem.API\bin\Debug\net9.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
+D:\Work\GlobalConnect\LibraryManagementSystem.API\bin\Debug\net9.0\BCrypt.Net-Core.dll
+D:\Work\GlobalConnect\LibraryManagementSystem.API\bin\Debug\net9.0\FluentValidation.dll
+D:\Work\GlobalConnect\LibraryManagementSystem.API\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
+D:\Work\GlobalConnect\LibraryManagementSystem.API\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll

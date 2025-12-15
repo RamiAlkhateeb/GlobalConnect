@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "zllX8hQ5uGY=",
+  "dgSpecHash": "LGAa/2M8tTI=",
   "success": true,
   "projectFilePath": "D:\\Work\\GlobalConnect\\LibraryManagementSystem.Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rami_\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.build.framework\\17.8.3\\microsoft.build.framework.17.8.3.nupkg.sha512",

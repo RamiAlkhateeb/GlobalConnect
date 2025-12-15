@@ -1,5 +1,7 @@
-﻿using Application.Modules.Identity.DTOs;
+﻿using Application.Common.Interfaces;
+using Application.Modules.Identity.DTOs;
 using Application.Modules.Identity.Interfaces;
+using Domain.Exceptions;
 using Domain.Models;
 using GlobalConnect.Domain.Models;
 using GlobalConnect.Infrastructure.Data;
@@ -16,10 +18,11 @@ namespace Infrastructure.Services
     public class AuthService : IAuthService
     {
         private readonly GlobalConnectDbContext _context;
-
-        public AuthService(GlobalConnectDbContext context)
+        private readonly IPasswordHasher _passwordHasher; // Injected Dependency
+        public AuthService(GlobalConnectDbContext context, IPasswordHasher passwordHasher)
         {
             _context = context;
+            _passwordHasher = passwordHasher; // Dependency Inversion Principle applied
         }
 
         public async Task<AuthResponse> RegisterAsync(RegisterRequest request)
@@ -27,7 +30,7 @@ namespace Infrastructure.Services
             // 1. Validation: Check if email already exists
             if (await _context.Users.AnyAsync(u => u.Email == request.Email))
             {
-                throw new Exception("User with this email already exists.");
+                throw new UserAlreadyExistsException(request.Email);
             }
 
             // 2. Create the User Entity
@@ -36,7 +39,7 @@ namespace Infrastructure.Services
                 Email = request.Email,
                 // Security Note: In production, use BCrypt or Argon2. 
                 // Using SHA256 here for simplicity in this demo.
-                PasswordHash = HashPassword(request.Password),
+                PasswordHash = _passwordHasher.HashPassword(request.Password),
                 IsProvider = request.IsProvider,
                 PreferredLanguage = request.PreferredLanguage,
                 TimezoneId = request.TimezoneId
@@ -81,11 +84,5 @@ namespace Infrastructure.Services
             };
         }
 
-        private string HashPassword(string password)
-        {
-            using var sha256 = SHA256.Create();
-            var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-            return Convert.ToBase64String(bytes);
-        }
     }
 }
