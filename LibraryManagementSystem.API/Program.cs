@@ -1,8 +1,14 @@
-using LibraryManagementSystem.Core.Interfaces;
-using LibraryManagementSystem.Infrastructure.Data;
+using Application.Modules.Identity.Interfaces;
+using GlobalConnect.Application.Modules.Provider.Interfaces;
+using GlobalConnect.Domain.Interfaces;
+using GlobalConnect.Infrastructure.Data;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
+using Application.Common.Interfaces; // New
+using FluentValidation;                          // New
+using FluentValidation.AspNetCore;
+using Application.Modules.Identity.DTOs;               // New
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,10 +17,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IBookRepository, BookRepository>();
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IProviderService, ProviderService>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
-builder.Services.AddDbContext<BooksDatabaseContext>(options =>
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequest>(); // Finds all validators
+
+builder.Services.AddDbContext<GlobalConnectDbContext>(options =>
 {
     //options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnectionLocal"));
