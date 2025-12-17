@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GlobalConnect.Domain.Interfaces
+namespace GlobalConnect.Application.Common.Interfaces
 {
     public interface IApplicationDbContext
     {

@@ -1,5 +1,5 @@
-﻿using Application.Modules.Identity.DTOs;
-using FluentValidation;
+﻿using FluentValidation;
+using GlobalConnect.Application.Modules.Identity.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\Availability\DTOs\" />
-    <Folder Include="Modules\Availability\Interfaces\" />
-    <Folder Include="Modules\Booking\DTOs\" />
-    <Folder Include="Modules\Booking\Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
   </ItemGroup>

@@ -1,10 +1,10 @@
-﻿using Application.Common.Interfaces;
-using System;
+﻿using System;
 using BCrypt.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GlobalConnect.Application.Common.Interfaces;
 
 namespace GlobalConnect.Infrastructure.Services
 {

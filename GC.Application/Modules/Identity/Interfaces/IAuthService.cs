@@ -1,4 +1,5 @@
 ﻿using Application.Modules.Identity.DTOs;
+using GlobalConnect.Application.Modules.Identity.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Application.Modules.Identity.Interfaces
         Task<AuthResponse> RegisterAsync(RegisterRequest request);
 
         // Login method would go here...
+        Task<AuthResponse> LoginAsync(LoginRequest request);
     }
 }

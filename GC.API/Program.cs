@@ -1,15 +1,14 @@
 using Application.Modules.Identity.Interfaces;
 using GlobalConnect.Application.Modules.Provider.Interfaces;
-using GlobalConnect.Domain.Interfaces;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Application.Common.Interfaces; // New
-using FluentValidation;                          // New
+using FluentValidation;
 using FluentValidation.AspNetCore;
-using Application.Modules.Identity.DTOs;
 using GlobalConnect.Infrastructure.Data;
-using GlobalConnect.Infrastructure.Services;               // New
+using GlobalConnect.Infrastructure.Services;
+using GlobalConnect.Application.Common.Interfaces;
+using GlobalConnect.Application.Modules.Identity.DTOs;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
