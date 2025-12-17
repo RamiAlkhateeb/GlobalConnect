@@ -31,30 +31,6 @@ namespace LibraryManagementSystem.API.Controllers
             return Ok(providerDto);
         }
 
-        // POST: api/Books
-        //[HttpPost]
-        //public ActionResult AddBook(BookToAddDto book)
-        //{
-        //    var newBook = _mapper.Map<BookToAddDto, User>(book);
-        //    _bookRepository.Add(newBook);
-        //    return Ok("Book added successfully");
-        //}
-
-        //// POST: api/Books/2
-        //[HttpPut("{id}")]
-        //public ActionResult<BookToReturnDto> UpdateBook(int id,BookToAddDto updatedBook)
-        //{
-        //    var newBookData = _mapper.Map<BookToAddDto, User>(updatedBook);
-        //    _bookRepository.Update(id, newBookData);
-        //    return _mapper.Map<User, BookToReturnDto>(newBookData);
-        //}
-
-        //// DELETE: api/Books 
-        //[HttpDelete("{id}")]
-        //public ActionResult DeleteBook(int id)
-        //{
-        //    _bookRepository.Delete(id);
-        //    return Ok();
-        //}
+    
     }
 }

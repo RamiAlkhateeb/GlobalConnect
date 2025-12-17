@@ -418,3 +418,6 @@ D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\refint\API.dll
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.pdb
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.genruntimeconfig.cache
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\ref\API.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
