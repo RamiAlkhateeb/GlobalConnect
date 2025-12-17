@@ -71,8 +71,13 @@ namespace GlobalConnect.Infrastructure.Services
                 foreach (var config in dayConfigs)
                 {
                     // Combine Date + Local Time
-                    var startLocal = currentDate.Add(config.StartTimeLocal);
-                    var endLocal = currentDate.Add(config.EndTimeLocal);
+                    var rawStart = currentDate.Add(config.StartTimeLocal);
+                    var rawEnd = currentDate.Add(config.EndTimeLocal);
+
+                    // 2. STRIP THE KIND: Tell .NET this is "Unspecified" 
+                    // This allows ConvertTimeToUtc to apply the provider's timezone rules correctly.
+                    var startLocal = DateTime.SpecifyKind(rawStart, DateTimeKind.Unspecified);
+                    var endLocal = DateTime.SpecifyKind(rawEnd, DateTimeKind.Unspecified);
 
                     // Convert to UTC (Handling DST automatically)
                     var startUtc = TimeZoneInfo.ConvertTimeToUtc(startLocal, providerTz);
