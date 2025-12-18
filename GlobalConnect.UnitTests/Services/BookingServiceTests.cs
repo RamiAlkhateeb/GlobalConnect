@@ -1,6 +1,7 @@
 ﻿using Domain.Models;
 using GlobalConnect.Application.Modules.Booking.DTOs;
 using GlobalConnect.Domain.Exceptions;
+using GlobalConnect.Domain.Models;
 using GlobalConnect.Infrastructure.Services;
 using GlobalConnect.UnitTests.Helpers;
 using System;
@@ -20,8 +21,20 @@ namespace GlobalConnect.UnitTests.Services
             using var context = DbContextFactory.Create();
             var service = new BookingService(context);
 
+            context.Users.Add(CreateTestUser(1));
+            context.Providers.Add(CreateTestProvider(1));
+
+            // Save these first so the IDs are established
+            await context.SaveChangesAsync();
+
             // Setup: A slot that is ALREADY booked
-            var slot = new GeneratedSlot { Id = 50, ProviderId = 1, IsBooked = true };
+            var slot = new GeneratedSlot {
+                Id = 50,
+                ProviderId = 1, // This now exists!
+                IsBooked = true,
+                SlotStartUTC = DateTime.UtcNow,
+                SlotEndUTC = DateTime.UtcNow.AddHours(1)
+            };
             context.GeneratedSlots.Add(slot);
             await context.SaveChangesAsync();
 
@@ -39,6 +52,14 @@ namespace GlobalConnect.UnitTests.Services
             using var context = DbContextFactory.Create();
             var service = new BookingService(context);
 
+            context.Users.Add(CreateTestUser(1));
+            context.Users.Add(CreateTestUser(2, "user@email.com"));
+
+            context.Providers.Add(CreateTestProvider(1));
+
+            // Save these first so the IDs are established
+            await context.SaveChangesAsync();
+
             var slot = new GeneratedSlot { Id = 60, ProviderId = 1, IsBooked = false };
             context.GeneratedSlots.Add(slot);
             await context.SaveChangesAsync();
@@ -46,7 +67,7 @@ namespace GlobalConnect.UnitTests.Services
             var request = new CreateBookingDto { SlotId = 60, PaymentToken = "tok_123" };
 
             // Act
-            var bookingId = await service.CreateBookingAsync(99, request);
+            var bookingId = await service.CreateBookingAsync(2, request);
 
             // Assert
             // 1. Booking ID returned
@@ -60,6 +81,29 @@ namespace GlobalConnect.UnitTests.Services
             var appointment = context.Appointments.Find(bookingId);
             Assert.NotNull(appointment);
             Assert.Equal("Confirmed", appointment.Status);
+        }
+
+        public static User CreateTestUser(int id, string email = "test@test.com")
+        {
+            return new User
+            {
+                Id = id,
+                Email = email,
+                PasswordHash = "AQAAAA...",
+                PreferredLanguage = "en",
+                TimezoneId = "UTC"
+            };
+        }
+
+        public static Provider CreateTestProvider(int id, string email = "test@test.com")
+        {
+            return new Provider
+            {
+                UserId = id,
+                Name = "Dr. Test",
+                Specialty = "General",
+                Description = "A test provider"
+            };
         }
     }
 }

@@ -60,12 +60,22 @@ namespace GlobalConnect.API.Controllers
 
         // 3. Search Providers
         // Allow Anonymous users? Or only Seekers? usually public is fine for search.
+        //[AllowAnonymous]
+        //[HttpGet("search")]
+        //public async Task<IActionResult> Search([FromQuery] SearchRequestDto request)
+        //{
+        //    var results = await _service.SearchProvidersAsync(request);
+        //    return Ok(results);
+        //}
+
+        // Step 2: Click & View Details
+        // GET: /api/providers/5/slots?date=2025-10-10&timezone=Europe/Berlin
         [AllowAnonymous]
-        [HttpGet("search")]
-        public async Task<IActionResult> Search([FromQuery] SearchRequestDto request)
+        [HttpGet("{id}/slots")]
+        public async Task<IActionResult> GetSlots([FromQuery] SearchRequestDto request)
         {
-            var results = await _service.SearchProvidersAsync(request);
-            return Ok(results);
+            var slots = await _service.GetProviderSlotsAsync(request);
+            return Ok(slots);
         }
     }
 }

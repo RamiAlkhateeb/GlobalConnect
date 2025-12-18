@@ -1,6 +1,7 @@
 ﻿using Domain.Models;
 using GlobalConnect.Application.Modules.Availability.DTOs;
 using GlobalConnect.Application.Modules.Availability.Interfaces;
+using GlobalConnect.Domain.Exceptions;
 using GlobalConnect.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -140,6 +141,36 @@ namespace GlobalConnect.Infrastructure.Services
                 }).ToList();
 
             return grouped;
+        }
+
+        // 2. GET SLOTS FOR ONE PROVIDER
+        public async Task<List<SlotDto>> GetProviderSlotsAsync(SearchRequestDto request)
+        {
+            // Find the provider's timezone to calculate availability correctly
+            var providerTzId = await _context.Providers
+                .Where(p => p.UserId == request.ProviderId)
+                .Select(p => p.User.TimezoneId)
+                .FirstOrDefaultAsync();
+
+            if (providerTzId == null) throw new DomainException("Provider not found.");
+
+            // Calculate UTC range for the requested day
+            var seekerTz = TimeZoneInfo.FindSystemTimeZoneById(request.SeekerTimezoneId);
+            // (Logic to fetch slots similar to previous implementation, but filtered by ProviderId)
+
+            var slots = await _context.GeneratedSlots
+                .Where(s => s.ProviderId == request.ProviderId
+                            && !s.IsBooked
+                            && s.SlotStartUTC >= DateTime.UtcNow) // Only future slots
+                .ToListAsync();
+
+            // Convert to Seeker's Time
+            return slots.Select(s => new SlotDto
+            {
+                SlotId = s.Id,
+                StartLocal = TimeZoneInfo.ConvertTimeFromUtc(s.SlotStartUTC, seekerTz),
+                EndLocal = TimeZoneInfo.ConvertTimeFromUtc(s.SlotEndUTC, seekerTz)
+            }).ToList();
         }
     }
 }

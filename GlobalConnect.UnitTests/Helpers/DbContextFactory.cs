@@ -1,4 +1,5 @@
 ﻿using GlobalConnect.Infrastructure.Data;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,18 @@ namespace GlobalConnect.UnitTests.Helpers
     {
         public static GlobalConnectDbContext Create()
         {
+            // 1. Create a connection to a nameless in-memory database
+            var connection = new SqliteConnection("Filename=:memory:");
+            connection.Open();
+
             var options = new DbContextOptionsBuilder<GlobalConnectDbContext>()
-                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()) // Unique DB per test
+                .UseSqlite(connection)
                 .Options;
+
+            var context = new GlobalConnectDbContext(options);
+
+            // 2. Since SQLite starts empty, we must manually create the tables
+            context.Database.EnsureCreated();
 
             return new GlobalConnectDbContext(options);
         }

@@ -12,5 +12,6 @@ namespace GlobalConnect.Application.Modules.Availability.Interfaces
         Task SetWorkingHoursAsync(int providerId, List<WorkingHourDto> workingHours);
         Task GenerateSlotsAsync(int providerId, int daysToGenerate = 30);
         Task<List<SearchResultDto>> SearchProvidersAsync(SearchRequestDto request);
+        Task<List<SlotDto>> GetProviderSlotsAsync(SearchRequestDto request);
     }
 }

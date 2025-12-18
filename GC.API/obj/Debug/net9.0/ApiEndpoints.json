@@ -135,5 +135,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LibraryManagementSystem.API.Controllers.ProvidersController",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/Providers/profile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Application.Modules.Provider.DTOs.UpdateProviderDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

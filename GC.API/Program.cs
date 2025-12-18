@@ -73,7 +73,19 @@ builder.Services.AddCors(opt =>
     });
 });
 
+// 1. Add CORS
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowAngular", policy => {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+
+// 2. Use CORS (Must be between UseRouting and UseAuthorization)
+app.UseCors("AllowAngular");
 
 // Configure the HTTP request pipeline.
 

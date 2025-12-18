@@ -20,5 +20,7 @@ namespace GlobalConnect.Application.Modules.Availability.DTOs
         public DateTime StartUTC { get; set; }
         public DateTime EndUTC { get; set; }
         public DateTime StartLocal { get; set; } // Converted for the seeker
+        public DateTime EndLocal { get; set; } // Converted for the seeker
+
     }
 }

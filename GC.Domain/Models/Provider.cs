@@ -15,6 +15,8 @@ namespace Domain.Models
         [Key, ForeignKey("User")]
         public int UserId { get; set; }
 
+        public string? PhotoUrl { get; set; }
+
         [Required, MaxLength(255)]
         public string Name { get; set; }
 

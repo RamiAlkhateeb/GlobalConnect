@@ -13,14 +13,21 @@ namespace GlobalConnect.UnitTests.Services
     public class AuthServiceTests
     {
         private readonly Mock<IPasswordHasher> _mockHasher;
-        private readonly IConfiguration _configuration; // Needed for JWT Secret Key
+        private readonly Mock<IConfiguration> _mockConfig; // 1. Create the Mock field
 
-
-        public AuthServiceTests(IConfiguration configuration)
+        public AuthServiceTests()
         {
             _mockHasher = new Mock<IPasswordHasher>();
             _mockHasher.Setup(x => x.HashPassword(It.IsAny<string>())).Returns("hashed_secret");
-            _configuration = configuration;
+            _mockHasher.Setup(x => x.VerifyPassword(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+
+            // 2. Setup the Mock Configuration
+            _mockConfig = new Mock<IConfiguration>();
+
+            // This mocks: _configuration["JwtSettings:Key"]
+            _mockConfig.Setup(c => c["JwtSettings:Key"]).Returns("test_key_must_be_32_characters_long_12345");
+            _mockConfig.Setup(c => c["JwtSettings:Issuer"]).Returns("TestIssuer");
+            _mockConfig.Setup(c => c["JwtSettings:Audience"]).Returns("TestAudience");
         }
 
         [Fact]
@@ -28,7 +35,7 @@ namespace GlobalConnect.UnitTests.Services
         {
             // Arrange
             using var context = DbContextFactory.Create();
-            var service = new AuthService(context, _mockHasher.Object, _configuration);
+            var service = new AuthService(context, _mockHasher.Object, _mockConfig.Object);
 
             var request = new RegisterRequest
             {
@@ -65,7 +72,7 @@ namespace GlobalConnect.UnitTests.Services
             context.Users.Add(new User { Email = "existing@test.com", PasswordHash = "x", PreferredLanguage = "en", TimezoneId = "UTC" });
             await context.SaveChangesAsync();
 
-            var service = new AuthService(context, _mockHasher.Object, _configuration);
+            var service = new AuthService(context, _mockHasher.Object, _mockConfig.Object);
             var request = new RegisterRequest { Email = "existing@test.com", Password = "123", PreferredLanguage = "en", TimezoneId = "UTC" };
 
             // Act & Assert

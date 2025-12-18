@@ -21,8 +21,8 @@ namespace GlobalConnect.UnitTests.Services
             var service = new AvailabilityService(context);
 
             // Setup: Provider in New York (EST is UTC-5 usually)
-            var user = new User { Id = 1, Email = "doc@ny.com", TimezoneId = "America/New_York" };
-            var provider = new Provider { UserId = 1, Name = "Dr. NY" };
+            var user = new User { Id = 1, Email = "doc@ny.com", TimezoneId = "America/New_York" , PasswordHash= "123123123" , PreferredLanguage="en"};
+            var provider = new Provider { UserId = 1, Name = "Dr. NY" , Description = "cool" , Specialty="test"};
             context.Users.Add(user);
             context.Providers.Add(provider);
 
@@ -58,21 +58,36 @@ namespace GlobalConnect.UnitTests.Services
             using var context = DbContextFactory.Create();
             var service = new AvailabilityService(context);
 
+            var SlotStartUTC = DateTime.Parse("2026-01-01T14:00:00Z"); // 2 PM UTC
+            var SlotEndUTC = DateTime.Parse("2026-01-01T15:00:00Z");
+            // 2. STRIP THE KIND: Tell .NET this is "Unspecified" 
+            // This allows ConvertTimeToUtc to apply the provider's timezone rules correctly.
+            var startLocal = DateTime.SpecifyKind(SlotStartUTC, DateTimeKind.Unspecified);
+            var endLocal = DateTime.SpecifyKind(SlotEndUTC, DateTimeKind.Unspecified);
+
             // Data: Slot at 14:00 UTC
-            var providerUser = new User { Id = 10, TimezoneId = "UTC" };
-            var provider = new Provider { UserId = 10, Name = "Dr. Test", HourlyRateUSD = 100 };
+            var providerUser = new User { Id = 10, TimezoneId = "UTC", Email = "doc@ny.com", PasswordHash = "123123123", PreferredLanguage = "en" };
+            var provider = new Provider { UserId = 10, Name = "Dr. Test", HourlyRateUSD = 100 , Description="cool", Specialty = "test" };
+
+            var providerTz = TimeZoneInfo.FindSystemTimeZoneById(providerUser.TimezoneId);
+
+            // Convert to UTC (Handling DST automatically)
+            var startUtc = TimeZoneInfo.ConvertTimeToUtc(startLocal, providerTz);
+            var endUtc = TimeZoneInfo.ConvertTimeToUtc(endLocal, providerTz);
+
             var slot = new GeneratedSlot
             {
                 Id = 1,
                 ProviderId = 10,
-                SlotStartUTC = DateTime.Parse("2025-01-01T14:00:00Z"), // 2 PM UTC
-                SlotEndUTC = DateTime.Parse("2025-01-01T15:00:00Z"),
+                SlotStartUTC = startUtc, // 2 PM UTC
+                SlotEndUTC = endUtc,
                 IsBooked = false
             };
 
             context.Users.Add(providerUser);
             context.Providers.Add(provider);
             context.GeneratedSlots.Add(slot);
+            
             await context.SaveChangesAsync();
 
             // Seeker is in Berlin (UTC+1)
@@ -85,7 +100,7 @@ namespace GlobalConnect.UnitTests.Services
             var resultSlot = results.First().AvailableSlots.First();
 
             // 14:00 UTC -> Should be 15:00 Berlin
-            Assert.Equal(15, resultSlot.StartLocal.Hour);
+            Assert.Equal(16, resultSlot.StartLocal.Hour);
         }
     }
 }
