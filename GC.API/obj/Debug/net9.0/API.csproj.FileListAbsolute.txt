@@ -245,6 +245,13 @@ D:\Work\GlobalConnect\LibraryManagementSystem.API\bin\Debug\net9.0\BCrypt.Net-Co
 D:\Work\GlobalConnect\LibraryManagementSystem.API\bin\Debug\net9.0\FluentValidation.dll
 D:\Work\GlobalConnect\LibraryManagementSystem.API\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
 D:\Work\GlobalConnect\LibraryManagementSystem.API\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
+D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.csproj.AssemblyReference.cache
+D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.AssemblyInfoInputs.cache
+D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.AssemblyInfo.cs
+D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.csproj.CoreCompileInputs.cache
+D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.MvcApplicationPartsAssemblyInfo.cache
+D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.sourcelink.json
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\appsettings.Development.json
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\appsettings.json
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\API.staticwebassets.endpoints.json
@@ -259,6 +266,7 @@ D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\FluentValidation.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Humanizer.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.Build.Locator.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.CodeAnalysis.dll
@@ -286,6 +294,8 @@ D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dl
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.OpenApi.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Mono.TextTemplating.dll
@@ -398,14 +408,7 @@ D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Infrastructure.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Application.pdb
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Domain.pdb
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Infrastructure.pdb
-D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.csproj.AssemblyReference.cache
-D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.GeneratedMSBuildEditorConfig.editorconfig
-D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.AssemblyInfoInputs.cache
-D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.AssemblyInfo.cs
-D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.csproj.CoreCompileInputs.cache
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.MvcApplicationPartsAssemblyInfo.cs
-D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.MvcApplicationPartsAssemblyInfo.cache
-D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.sourcelink.json
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\scopedcss\bundle\API.styles.css
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\staticwebassets.build.json
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\staticwebassets.build.json.cache
@@ -418,6 +421,3 @@ D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\refint\API.dll
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.pdb
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.genruntimeconfig.cache
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\ref\API.dll
-D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
-D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

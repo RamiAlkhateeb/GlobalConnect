@@ -35,5 +35,7 @@ namespace GlobalConnect.Domain.Models
         public Provider ProviderProfile { get; set; }
         public ICollection<Appointment> SeekerAppointments { get; set; }
         public bool IsActive { get; set; } = false;
+
+        public string Nationality { get; set; }
     }
 }

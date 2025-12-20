@@ -20,6 +20,7 @@ D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net9.0\BCrypt.Net-Core.d
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net9.0\Castle.Core.dll
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net9.0\FluentAssertions.dll
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net9.0\FluentValidation.dll
+D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net9.0\Microsoft.AspNetCore.Http.Features.dll
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net9.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net9.0\Microsoft.Data.Sqlite.dll
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll

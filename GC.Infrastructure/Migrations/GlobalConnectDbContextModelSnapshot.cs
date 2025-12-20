@@ -174,6 +174,10 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsProvider")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Nationality")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("TEXT");

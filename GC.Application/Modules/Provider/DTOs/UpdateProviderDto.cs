@@ -16,5 +16,6 @@ namespace Application.Modules.Provider.DTOs
         public decimal HourlyRateUSD { get; set; }
         public List<string> Languages { get; set; }
         public string? Timezone { get; set; } // Coming from the User table
+        public string? PhotoUrl { get; set; }
     }
 }

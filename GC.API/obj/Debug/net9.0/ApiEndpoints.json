@@ -33,6 +33,37 @@
   },
   {
     "ContainingType": "GlobalConnect.API.Controllers.AvailabilityController",
+    "Method": "GetSlots",
+    "RelativePath": "api/Availability/{id}/slots",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "ProviderId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "AvailableDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "SeekerTimezoneId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GlobalConnect.API.Controllers.AvailabilityController",
     "Method": "GenerateSlots",
     "RelativePath": "api/Availability/generate",
     "HttpMethod": "POST",
@@ -50,13 +81,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Language",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Specialty",
-        "Type": "System.String",
+        "Name": "ProviderId",
+        "Type": "System.Int32",
         "IsRequired": false
       },
       {
@@ -116,6 +142,27 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LibraryManagementSystem.API.Controllers.ProvidersController",
+    "Method": "Search",
+    "RelativePath": "api/Providers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Specialty",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Language",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

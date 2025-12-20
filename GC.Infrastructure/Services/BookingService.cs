@@ -1,6 +1,7 @@
 ﻿using Domain.Models;
 using GlobalConnect.Application.Modules.Booking.DTOs;
 using GlobalConnect.Application.Modules.Booking.Interfaces;
+using GlobalConnect.Domain.Enums;
 using GlobalConnect.Domain.Exceptions;
 using GlobalConnect.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -95,6 +96,66 @@ namespace GlobalConnect.Infrastructure.Services
                 await transaction.RollbackAsync();
                 throw;
             }
+        }
+
+        // --- IMPLEMENTATION ---
+        public async Task<List<BookingDto>> GetSeekerBookingsAsync(int seekerId)
+        {
+            // Fetch bookings + Provider details + Timezone
+            var bookings = await _context.Appointments
+                .Include(b => b.Slot)
+                    .ThenInclude(s => s.Provider) // To get Provider Name
+                .Where(b => b.SeekerId == seekerId)
+                .OrderByDescending(b => b.Slot.SlotStartUTC)
+                .ToListAsync();
+
+            // In a real app, we would convert UTC to the Seeker's stored Timezone here
+            // For simplicity, we are returning UTC
+            return bookings.Select(b => new BookingDto
+            {
+                AppointmentId = b.Id,
+                OtherPartyName = b.Slot.Provider.Name,
+                StartTimeLocal = b.Slot.SlotStartUTC, // TODO: Convert to Local
+                Status = b.Status.ToString(),
+                //PricePaid = b.AmountPaidUSD
+            }).ToList();
+        }
+
+        public async Task<List<BookingDto>> GetProviderAppointmentsAsync(int providerUserId)
+        {
+            // Complex Query: Find bookings where the Slot belongs to the Provider
+            var bookings = await _context.Appointments
+                .Include(b => b.Seeker) // To get Seeker Name
+                .Include(b => b.Slot)
+                .Where(b => b.Slot.Provider.UserId == providerUserId)
+                .OrderByDescending(b => b.Slot.SlotStartUTC)
+                .ToListAsync();
+
+            return bookings.Select(b => new BookingDto
+            {
+                AppointmentId = b.Id,
+                OtherPartyName = b.Seeker.Email, // Using Email as Name for now
+                StartTimeLocal = b.Slot.SlotStartUTC,
+                Status = b.Status.ToString(),
+                //PricePaid = b.AmountPaidUSD
+            }).ToList();
+        }
+
+        public async Task CompleteAppointmentAsync(int appointmentId, int requesterId)
+        {
+            var booking = await _context.Appointments
+                .Include(b => b.Slot)
+                    .ThenInclude(s => s.Provider)
+                .FirstOrDefaultAsync(b => b.Id == appointmentId);
+
+            if (booking == null) throw new DomainException("Appointment not found.");
+
+            // Security: Only the Provider can mark it as complete
+            if (booking.Slot.Provider.UserId != requesterId)
+                throw new DomainException("Only the provider can complete this appointment.");
+
+            booking.Status = AppointmentStatus.Completed.ToString();
+            await _context.SaveChangesAsync();
         }
     }
 }

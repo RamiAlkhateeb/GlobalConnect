@@ -160,7 +160,7 @@ namespace GlobalConnect.Infrastructure.Services
 
             var slots = await _context.GeneratedSlots
                 .Where(s => s.ProviderId == request.ProviderId
-                            && !s.IsBooked
+                            //&& !s.IsBooked
                             && s.SlotStartUTC >= DateTime.UtcNow) // Only future slots
                 .ToListAsync();
 
@@ -169,7 +169,10 @@ namespace GlobalConnect.Infrastructure.Services
             {
                 SlotId = s.Id,
                 StartLocal = TimeZoneInfo.ConvertTimeFromUtc(s.SlotStartUTC, seekerTz),
-                EndLocal = TimeZoneInfo.ConvertTimeFromUtc(s.SlotEndUTC, seekerTz)
+                EndLocal = TimeZoneInfo.ConvertTimeFromUtc(s.SlotEndUTC, seekerTz),
+                StartUTC = s.SlotStartUTC,
+                EndUTC = s.SlotEndUTC,
+                IsBooked = s.IsBooked
             }).ToList();
         }
     }
