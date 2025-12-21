@@ -16,7 +16,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 
-
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 // --- 1. GET JWT SETTINGS FROM CONFIG ---
 var jwtKey = builder.Configuration["JwtSettings:Key"] ?? "super_secret_key_must_be_long_enough_12345";
 var issuer = builder.Configuration["JwtSettings:Issuer"] ?? "GlobalConnectAPI";
@@ -61,8 +61,8 @@ builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequest>(); // Find
 
 builder.Services.AddDbContext<GlobalConnectDbContext>(options =>
 {
-    //options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnectionLocal"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    //options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnectionLocal"));
 });
 
 builder.Services.AddCors(opt =>

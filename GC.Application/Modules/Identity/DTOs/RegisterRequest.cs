@@ -24,5 +24,7 @@ namespace GlobalConnect.Application.Modules.Identity.DTOs
 
         [Required]
         public string TimezoneId { get; set; } // e.g., "Europe/Berlin"
+        [Required]
+        public string Nationality { get; set; } 
     }
 }

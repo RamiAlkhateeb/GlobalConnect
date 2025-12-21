@@ -112,6 +112,7 @@ namespace GlobalConnect.Infrastructure.Services
                 {
                     ProviderId = p.UserId,
                     Name = p.Name,
+                    Nationality = p.User.Nationality,
                     PhotoUrl = p.PhotoUrl,
                     Specialty = p.Specialty,
                     HourlyRateUSD = p.HourlyRateUSD,

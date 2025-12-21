@@ -14,6 +14,7 @@ namespace GlobalConnect.Application.Modules.Provider.DTOs
         public string PhotoUrl { get; set; }
         public string Specialty { get; set; }
         public string Description { get; set; }
+        public string Nationality { get; set; }
         public decimal HourlyRateUSD { get; set; }
         public string Timezone { get; set; } // Coming from the User table
         public List<string> Languages { get; set; } // Simplified list of codes

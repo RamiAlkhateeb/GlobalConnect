@@ -85,7 +85,8 @@ namespace GlobalConnect.Infrastructure.Services
                 PasswordHash = _passwordHasher.HashPassword(request.Password),
                 IsProvider = request.IsProvider,
                 PreferredLanguage = request.PreferredLanguage,
-                TimezoneId = request.TimezoneId
+                TimezoneId = request.TimezoneId,
+                Nationality = request.Nationality
             };
 
             // 3. Transaction: Ensure both User and Provider profile are created together

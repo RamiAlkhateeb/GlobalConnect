@@ -1,12 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialPostgres : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,14 +16,15 @@ namespace Infrastructure.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 255, nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
-                    IsProvider = table.Column<bool>(type: "INTEGER", nullable: false),
-                    PreferredLanguage = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
-                    TimezoneId = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    PasswordHash = table.Column<string>(type: "text", nullable: false),
+                    IsProvider = table.Column<bool>(type: "boolean", nullable: false),
+                    PreferredLanguage = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
+                    TimezoneId = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false),
+                    Nationality = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,11 +35,12 @@ namespace Infrastructure.Migrations
                 name: "Providers",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 255, nullable: false),
-                    Specialty = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    HourlyRateUSD = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false)
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    PhotoUrl = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    Specialty = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    HourlyRateUSD = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,12 +57,12 @@ namespace Infrastructure.Migrations
                 name: "GeneratedSlots",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ProviderId = table.Column<int>(type: "INTEGER", nullable: false),
-                    SlotStartUTC = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    SlotEndUTC = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    IsBooked = table.Column<bool>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ProviderId = table.Column<int>(type: "integer", nullable: false),
+                    SlotStartUTC = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    SlotEndUTC = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IsBooked = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,10 +79,10 @@ namespace Infrastructure.Migrations
                 name: "ProviderLanguages",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ProviderId = table.Column<int>(type: "INTEGER", nullable: false),
-                    LanguageCode = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ProviderId = table.Column<int>(type: "integer", nullable: false),
+                    LanguageCode = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,10 +99,10 @@ namespace Infrastructure.Migrations
                 name: "WorkingHours",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ProviderId = table.Column<int>(type: "INTEGER", nullable: false),
-                    DayOfWeek = table.Column<int>(type: "INTEGER", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ProviderId = table.Column<int>(type: "integer", nullable: false),
+                    DayOfWeek = table.Column<int>(type: "integer", nullable: false),
                     StartTimeLocal = table.Column<TimeSpan>(type: "time", nullable: false),
                     EndTimeLocal = table.Column<TimeSpan>(type: "time", nullable: false)
                 },
@@ -118,14 +121,14 @@ namespace Infrastructure.Migrations
                 name: "Appointments",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    SlotId = table.Column<int>(type: "INTEGER", nullable: false),
-                    SeekerId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ProviderId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Status = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    PaymentTransactionId = table.Column<string>(type: "TEXT", nullable: false),
-                    BookingTimestampUTC = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    SlotId = table.Column<int>(type: "integer", nullable: false),
+                    SeekerId = table.Column<int>(type: "integer", nullable: false),
+                    ProviderId = table.Column<int>(type: "integer", nullable: false),
+                    Status = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    PaymentTransactionId = table.Column<string>(type: "text", nullable: false),
+                    BookingTimestampUTC = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {

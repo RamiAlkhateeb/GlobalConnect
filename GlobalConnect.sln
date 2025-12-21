@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "GC.Infras
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalConnect.UnitTests", "GlobalConnect.UnitTests\GlobalConnect.UnitTests.csproj", "{262AD6A6-8693-48AA-9805-3F0F8A6A9003}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9F808D7D-2024-4718-9A35-9BE063B7E897}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +90,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3BA53722-093A-4B61-BC09-5393E439A869} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{F0160AC2-DB68-49AF-BB69-0F6598622925} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{AF4B82D6-EFBE-479A-BB0B-51BE22F59FDF} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{C8432101-178D-4396-A253-908CBF2B9EEE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{262AD6A6-8693-48AA-9805-3F0F8A6A9003} = {9F808D7D-2024-4718-9A35-9BE063B7E897}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFF98C7-30F2-42A4-9791-6E7527E59302}

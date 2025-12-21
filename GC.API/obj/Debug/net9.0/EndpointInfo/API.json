@@ -444,6 +444,7 @@
       "RegisterRequest": {
         "required": [
           "email",
+          "nationality",
           "password",
           "preferredLanguage",
           "timezoneId"
@@ -467,6 +468,10 @@
             "type": "string"
           },
           "timezoneId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "nationality": {
             "minLength": 1,
             "type": "string"
           }
