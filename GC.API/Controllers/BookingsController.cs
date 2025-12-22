@@ -26,37 +26,40 @@ namespace GlobalConnect.API.Controllers
             return int.Parse(idClaim.Value);
         }
 
-        // 4. Create Booking
-        [HttpPost]
-        public async Task<IActionResult> CreateBooking([FromBody] CreateBookingDto request)
-        {
-            int seekerId = GetCurrentUserId();
-            try
-            {
-                var bookingId = await _service.CreateBookingAsync(seekerId, request);
-                // Return 201 Created
-                return CreatedAtAction(nameof(CreateBooking), new { id = bookingId }, new { bookingId, status = "Confirmed" });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
-        }
+        #region create booking
+        //// 4. Create Booking
+        //[HttpPost]
+        //public async Task<IActionResult> CreateBooking([FromBody] CreateBookingDto request)
+        //{
+        //    int seekerId = GetCurrentUserId();
+        //    try
+        //    {
+        //        var bookingId = await _service.CreateBookingAsync(seekerId, request);
+        //        // Return 201 Created
+        //        return CreatedAtAction(nameof(CreateBooking), new { id = bookingId }, new { bookingId, status = "Confirmed" });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(new { error = ex.Message });
+        //    }
+        //}
 
-        // Cancel Booking
-        [HttpPost("{id}/cancel")]
-        public async Task<IActionResult> CancelBooking(int id)
-        {
-            int userId = GetCurrentUserId(); 
-            try
-            {
-                await _service.CancelBookingAsync(userId, id);
-                return Ok(new { message = "Booking cancelled successfully." });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
-        }
+        //// Cancel Booking
+        //[HttpPost("{id}/cancel")]
+        //public async Task<IActionResult> CancelBooking(int id)
+        //{
+        //    int userId = GetCurrentUserId();
+        //    try
+        //    {
+        //        await _service.CancelBookingAsync(userId, id);
+        //        return Ok(new { message = "Booking cancelled successfully." });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(new { error = ex.Message });
+        //    }
+        //}
+        #endregion
+
     }
 }

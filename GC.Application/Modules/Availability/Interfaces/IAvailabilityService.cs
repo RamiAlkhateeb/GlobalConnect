@@ -1,4 +1,5 @@
 ﻿using GlobalConnect.Application.Modules.Availability.DTOs;
+using GlobalConnect.Application.Modules.Provider.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,11 @@ namespace GlobalConnect.Application.Modules.Availability.Interfaces
 {
     public interface IAvailabilityService
     {
-        Task SetWorkingHoursAsync(int providerId, List<WorkingHourDto> workingHours);
-        Task GenerateSlotsAsync(int providerId, int daysToGenerate = 30);
-        Task<List<SearchResultDto>> SearchProvidersAsync(SearchRequestDto request);
-        Task<List<SlotDto>> GetProviderSlotsAsync(SearchRequestDto request);
+        //Task SetWorkingHoursAsync(int providerId, List<WorkingHourDto> workingHours);
+        //Task GenerateSlotsAsync(int providerId, int daysToGenerate = 30);
+        //Task<List<SlotDto>> GetProviderSlotsAsync(SearchRequestDto request);
+
+        Task<ProviderDetailDto> GetProviderProfileAsync(int providerId);
+        Task UpdateGoogleLinkAsync(int providerUserId, string bookingUrl);
     }
 }

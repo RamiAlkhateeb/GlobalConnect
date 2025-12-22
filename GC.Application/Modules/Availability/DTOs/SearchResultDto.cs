@@ -11,7 +11,7 @@ namespace GlobalConnect.Application.Modules.Availability.DTOs
         public int ProviderId { get; set; }
         public string ProviderName { get; set; }
         public decimal HourlyRate { get; set; }
-        public List<SlotDto> AvailableSlots { get; set; }
+        //public List<SlotDto> AvailableSlots { get; set; }
     }
 
     public class SlotDto

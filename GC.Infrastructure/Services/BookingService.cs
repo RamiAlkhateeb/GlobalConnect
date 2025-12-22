@@ -16,13 +16,16 @@ namespace GlobalConnect.Infrastructure.Services
     public class BookingService : IBookingService
     {
         private readonly GlobalConnectDbContext _context;
+        private readonly IGoogleCalendarService _googleService;
 
-        public BookingService(GlobalConnectDbContext context)
+        public BookingService(GlobalConnectDbContext context, IGoogleCalendarService googleService)
         {
             _context = context;
+            _googleService = googleService;
         }
-
-        // API 4: Atomic Booking Transaction
+        #region comments
+        /*
+         * // API 4: Atomic Booking Transaction
         public async Task<int> CreateBookingAsync(int seekerId, CreateBookingDto request)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
@@ -47,8 +50,8 @@ namespace GlobalConnect.Infrastructure.Services
                     SeekerId = seekerId,
                     ProviderId = slot.ProviderId,
                     Status = "Confirmed",
-                    PaymentTransactionId = "tok_" + Guid.NewGuid(), // Mock Payment
-                    BookingTimestampUTC = DateTime.UtcNow
+                    //PaymentTransactionId = "tok_" + Guid.NewGuid(), // Mock Payment
+                    //BookingTimestampUTC = DateTime.UtcNow
                 };
 
                 _context.Appointments.Add(appointment);
@@ -73,7 +76,7 @@ namespace GlobalConnect.Infrastructure.Services
             try
             {
                 var appointment = await _context.Appointments
-                    .Include(a => a.Slot)
+                    //.Include(a => a.Slot)
                     .FirstOrDefaultAsync(a => a.Id == bookingId);
 
                 if (appointment == null) throw new DomainException("Booking not found.");
@@ -86,7 +89,7 @@ namespace GlobalConnect.Infrastructure.Services
                 appointment.Status = "Cancelled";
 
                 // 2. Free up the slot
-                appointment.Slot.IsBooked = false;
+                //appointment.Slot.IsBooked = false;
 
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
@@ -97,16 +100,20 @@ namespace GlobalConnect.Infrastructure.Services
                 throw;
             }
         }
+         */
+        #endregion
+
+
 
         // --- IMPLEMENTATION ---
         public async Task<List<BookingDto>> GetSeekerBookingsAsync(int seekerId)
         {
             // Fetch bookings + Provider details + Timezone
             var bookings = await _context.Appointments
-                .Include(b => b.Slot)
-                    .ThenInclude(s => s.Provider) // To get Provider Name
+                //.Include(b => b.Slot)
+                    .Include(s => s.Provider) // To get Provider Name
                 .Where(b => b.SeekerId == seekerId)
-                .OrderByDescending(b => b.Slot.SlotStartUTC)
+                //.OrderByDescending(b => b.Slot.SlotStartUTC)
                 .ToListAsync();
 
             // In a real app, we would convert UTC to the Seeker's stored Timezone here
@@ -114,8 +121,8 @@ namespace GlobalConnect.Infrastructure.Services
             return bookings.Select(b => new BookingDto
             {
                 AppointmentId = b.Id,
-                OtherPartyName = b.Slot.Provider.Name,
-                StartTimeLocal = b.Slot.SlotStartUTC, // TODO: Convert to Local
+                //OtherPartyName = b.Slot.Provider.Name,
+                //StartTimeLocal = b.Slot.SlotStartUTC, // TODO: Convert to Local
                 Status = b.Status.ToString(),
                 //PricePaid = b.AmountPaidUSD
             }).ToList();
@@ -126,16 +133,16 @@ namespace GlobalConnect.Infrastructure.Services
             // Complex Query: Find bookings where the Slot belongs to the Provider
             var bookings = await _context.Appointments
                 .Include(b => b.Seeker) // To get Seeker Name
-                .Include(b => b.Slot)
-                .Where(b => b.Slot.Provider.UserId == providerUserId)
-                .OrderByDescending(b => b.Slot.SlotStartUTC)
+                //.Include(b => b.Slot)
+                //.Where(b => b.Slot.Provider.UserId == providerUserId)
+                //.OrderByDescending(b => b.Slot.SlotStartUTC)
                 .ToListAsync();
 
             return bookings.Select(b => new BookingDto
             {
                 AppointmentId = b.Id,
                 OtherPartyName = b.Seeker.Email, // Using Email as Name for now
-                StartTimeLocal = b.Slot.SlotStartUTC,
+                //StartTimeLocal = b.Slot.SlotStartUTC,
                 Status = b.Status.ToString(),
                 //PricePaid = b.AmountPaidUSD
             }).ToList();
@@ -144,18 +151,69 @@ namespace GlobalConnect.Infrastructure.Services
         public async Task CompleteAppointmentAsync(int appointmentId, int requesterId)
         {
             var booking = await _context.Appointments
-                .Include(b => b.Slot)
-                    .ThenInclude(s => s.Provider)
+                //.Include(b => b.Slot)
+                    .Include(s => s.Provider)
                 .FirstOrDefaultAsync(b => b.Id == appointmentId);
 
             if (booking == null) throw new DomainException("Appointment not found.");
 
             // Security: Only the Provider can mark it as complete
-            if (booking.Slot.Provider.UserId != requesterId)
-                throw new DomainException("Only the provider can complete this appointment.");
+            //if (booking.Slot.Provider.UserId != requesterId)
+            //    throw new DomainException("Only the provider can complete this appointment.");
 
             booking.Status = AppointmentStatus.Completed.ToString();
             await _context.SaveChangesAsync();
+        }
+
+        // Called by the Webhook Controller
+        public async Task SyncBookingFromGoogleAsync(int providerId, string googleEventId)
+        {
+            var provider = await _context.Providers.FindAsync(providerId);
+            if (provider == null || string.IsNullOrEmpty(provider.GoogleRefreshToken)) return;
+
+            // 1. Get the actual event details from Google
+            var gEvent = await _googleService.GetLatestEventAsync(provider.GoogleRefreshToken, googleEventId);
+            if (gEvent == null) return;
+
+            // 2. Check if we already have this booking
+            var existingBooking = await _context.Appointments
+                .FirstOrDefaultAsync(b => b.GoogleEventId == googleEventId);
+
+            if (existingBooking == null)
+            {
+                // 3. Create a new record in our DB for tracking/reviews
+                var newBooking = new Appointment
+                {
+                    ProviderId = providerId,
+                    GoogleEventId = googleEventId,
+                    //SeekerEmail = gEvent.Attendees?.FirstOrDefault()?.Email ?? "Unknown",
+                    Status = "Confirmed",
+                    BookingTimeUtc = gEvent.Start.DateTimeDateTimeOffset?.UtcDateTime ?? DateTime.UtcNow
+                };
+                _context.Appointments.Add(newBooking);
+            }
+            else
+            {
+                // 4. Update existing (in case the time changed on Google)
+                existingBooking.BookingTimeUtc = gEvent.Start.DateTimeDateTimeOffset?.UtcDateTime ?? DateTime.UtcNow;
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<BookingDto>> GetProviderBookingsAsync(int providerUserId)
+        {
+            return await _context.Appointments
+                .Where(b => b.Provider.UserId == providerUserId)
+                .OrderByDescending(b => b.BookingTimeUtc)
+                .Select(b => new BookingDto
+                {
+                    AppointmentId = b.Id,
+                    //SeekerEmail = b.SeekerEmail,
+                    StartTimeLocal = b.BookingTimeUtc,
+                    Status = b.Status
+                })
+                .ToListAsync();
         }
     }
 }

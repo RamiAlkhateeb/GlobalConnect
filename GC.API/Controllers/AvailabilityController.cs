@@ -26,6 +26,12 @@ namespace GlobalConnect.API.Controllers
             return int.Parse(idClaim.Value);
         }
 
+
+
+        // 2. Generate Slots
+        // Only a logged-in Provider can trigger their own slot generation
+        #region generate slots
+        /*
         // 1. Set Working Hours
         // Only a logged-in Provider can do this
         [Authorize(Roles = "Provider")]
@@ -47,8 +53,7 @@ namespace GlobalConnect.API.Controllers
             
         }
 
-        // 2. Generate Slots
-        // Only a logged-in Provider can trigger their own slot generation
+
         [Authorize(Roles = "Provider")]
         [HttpPost("generate")]
         public async Task<IActionResult> GenerateSlots()
@@ -56,16 +61,6 @@ namespace GlobalConnect.API.Controllers
             int providerId = GetCurrentUserId(); // Secured ID
             await _service.GenerateSlotsAsync(providerId);
             return Ok(new { message = "Slots generated successfully." });
-        }
-
-        // 3. Search Providers
-        // Allow Anonymous users? Or only Seekers? usually public is fine for search.
-        [AllowAnonymous]
-        [HttpGet("search")]
-        public async Task<IActionResult> Search([FromQuery] SearchRequestDto request)
-        {
-            var results = await _service.SearchProvidersAsync(request);
-            return Ok(results);
         }
 
         // Step 2: Click & View Details
@@ -78,5 +73,22 @@ namespace GlobalConnect.API.Controllers
             var slots = await _service.GetProviderSlotsAsync(request);
             return Ok(slots);
         }
+
+        // 3. Search Providers
+        // Allow Anonymous users? Or only Seekers? usually public is fine for search.
+        [AllowAnonymous]
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] SearchRequestDto request)
+        {
+            var results = await _service.SearchProvidersAsync(request);
+            return Ok(results);
+        }
+         */
+        #endregion
+
+
+
+
+
     }
 }

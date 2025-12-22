@@ -421,3 +421,10 @@ D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\refint\API.dll
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.pdb
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.genruntimeconfig.cache
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\ref\API.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Google.Apis.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Google.Apis.Auth.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Google.Apis.Calendar.v3.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Google.Apis.Core.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Newtonsoft.Json.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\System.Management.dll
+D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Management.dll

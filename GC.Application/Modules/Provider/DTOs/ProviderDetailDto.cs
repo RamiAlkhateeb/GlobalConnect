@@ -12,6 +12,7 @@ namespace GlobalConnect.Application.Modules.Provider.DTOs
         public string Name { get; set; }
         public string Email { get; set; } // Coming from the User table
         public string PhotoUrl { get; set; }
+        public string GoogleBookingUrl { get; set; }
         public string Specialty { get; set; }
         public string Description { get; set; }
         public string Nationality { get; set; }

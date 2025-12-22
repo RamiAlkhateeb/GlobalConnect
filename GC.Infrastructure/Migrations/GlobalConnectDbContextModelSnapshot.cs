@@ -30,10 +30,10 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("BookingTimestampUTC")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateTime>("BookingTimeUtc")
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("PaymentTransactionId")
+                    b.Property<string>("GoogleEventId")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -57,37 +57,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("SeekerId");
 
-                    b.HasIndex("SlotId")
-                        .IsUnique();
-
                     b.ToTable("Appointments");
-                });
-
-            modelBuilder.Entity("Domain.Models.GeneratedSlot", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsBooked")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("ProviderId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("SlotEndUTC")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("SlotStartUTC")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProviderId", "SlotStartUTC");
-
-                    b.ToTable("GeneratedSlots");
                 });
 
             modelBuilder.Entity("Domain.Models.Provider", b =>
@@ -97,6 +67,15 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("GoogleBookingUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("GoogleCalendarId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("GoogleRefreshToken")
                         .HasColumnType("text");
 
                     b.Property<decimal>("HourlyRateUSD")
@@ -141,33 +120,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ProviderId");
 
                     b.ToTable("ProviderLanguages");
-                });
-
-            modelBuilder.Entity("Domain.Models.WorkingHour", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("DayOfWeek")
-                        .HasColumnType("integer");
-
-                    b.Property<TimeSpan>("EndTimeLocal")
-                        .HasColumnType("time");
-
-                    b.Property<int>("ProviderId")
-                        .HasColumnType("integer");
-
-                    b.Property<TimeSpan>("StartTimeLocal")
-                        .HasColumnType("time");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProviderId");
-
-                    b.ToTable("WorkingHours");
                 });
 
             modelBuilder.Entity("GlobalConnect.Domain.Models.User", b =>
@@ -226,28 +178,9 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Models.GeneratedSlot", "Slot")
-                        .WithOne("Appointment")
-                        .HasForeignKey("Domain.Models.Appointment", "SlotId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Provider");
 
                     b.Navigation("Seeker");
-
-                    b.Navigation("Slot");
-                });
-
-            modelBuilder.Entity("Domain.Models.GeneratedSlot", b =>
-                {
-                    b.HasOne("Domain.Models.Provider", "Provider")
-                        .WithMany("GeneratedSlots")
-                        .HasForeignKey("ProviderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Provider");
                 });
 
             modelBuilder.Entity("Domain.Models.Provider", b =>
@@ -272,30 +205,9 @@ namespace Infrastructure.Migrations
                     b.Navigation("Provider");
                 });
 
-            modelBuilder.Entity("Domain.Models.WorkingHour", b =>
-                {
-                    b.HasOne("Domain.Models.Provider", "Provider")
-                        .WithMany("WorkingHours")
-                        .HasForeignKey("ProviderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Provider");
-                });
-
-            modelBuilder.Entity("Domain.Models.GeneratedSlot", b =>
-                {
-                    b.Navigation("Appointment")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Domain.Models.Provider", b =>
                 {
-                    b.Navigation("GeneratedSlots");
-
                     b.Navigation("SupportedLanguages");
-
-                    b.Navigation("WorkingHours");
                 });
 
             modelBuilder.Entity("GlobalConnect.Domain.Models.User", b =>

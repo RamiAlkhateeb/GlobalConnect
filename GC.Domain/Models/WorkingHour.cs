@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Models
 {
+    /*
     public class WorkingHour
     {
         [Key]
@@ -23,4 +24,5 @@ namespace Domain.Models
         // Navigation property
         public Provider Provider { get; set; }
     }
+    */
 }

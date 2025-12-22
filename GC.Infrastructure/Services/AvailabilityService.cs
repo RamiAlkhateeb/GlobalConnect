@@ -1,6 +1,7 @@
 ﻿using Domain.Models;
 using GlobalConnect.Application.Modules.Availability.DTOs;
 using GlobalConnect.Application.Modules.Availability.Interfaces;
+using GlobalConnect.Application.Modules.Provider.DTOs;
 using GlobalConnect.Domain.Exceptions;
 using GlobalConnect.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,11 @@ namespace GlobalConnect.Infrastructure.Services
             _context = context;
         }
 
+
+
+
+        #region GenerateSlotsAsync and SetWorkingHoursAsync
+        /*
         // API 1: Set Working Hours
         public async Task SetWorkingHoursAsync(int providerId, List<WorkingHourDto> workingHoursDto)
         {
@@ -40,6 +46,7 @@ namespace GlobalConnect.Infrastructure.Services
             _context.WorkingHours.AddRange(newHours);
             await _context.SaveChangesAsync();
         }
+
 
         // API 2: Generate Slots (The Timezone Logic)
         public async Task GenerateSlotsAsync(int providerId, int daysToGenerate = 30)
@@ -104,6 +111,7 @@ namespace GlobalConnect.Infrastructure.Services
             await _context.SaveChangesAsync();
         }
 
+
         // API 3: Search
         public async Task<List<SearchResultDto>> SearchProvidersAsync(SearchRequestDto request)
         {
@@ -142,38 +150,42 @@ namespace GlobalConnect.Infrastructure.Services
 
             return grouped;
         }
+        */
+        #endregion
+
+
+
 
         // 2. GET SLOTS FOR ONE PROVIDER
-        public async Task<List<SlotDto>> GetProviderSlotsAsync(SearchRequestDto request)
+        // This replaces "GetAvailableSlots"
+        public async Task<ProviderDetailDto> GetProviderProfileAsync(int providerId)
         {
-            // Find the provider's timezone to calculate availability correctly
-            var providerTzId = await _context.Providers
-                .Where(p => p.UserId == request.ProviderId)
-                .Select(p => p.User.TimezoneId)
-                .FirstOrDefaultAsync();
+            var provider = await _context.Providers
+                .Include(p => p.User)
+                .FirstOrDefaultAsync(p => p.UserId == providerId);
 
-            if (providerTzId == null) throw new DomainException("Provider not found.");
+            if (provider == null) throw new Exception("Provider not found");
 
-            // Calculate UTC range for the requested day
-            var seekerTz = TimeZoneInfo.FindSystemTimeZoneById(request.SeekerTimezoneId);
-            // (Logic to fetch slots similar to previous implementation, but filtered by ProviderId)
-
-            var slots = await _context.GeneratedSlots
-                .Where(s => s.ProviderId == request.ProviderId
-                            //&& !s.IsBooked
-                            && s.SlotStartUTC >= DateTime.UtcNow) // Only future slots
-                .ToListAsync();
-
-            // Convert to Seeker's Time
-            return slots.Select(s => new SlotDto
+            return new ProviderDetailDto
             {
-                SlotId = s.Id,
-                StartLocal = TimeZoneInfo.ConvertTimeFromUtc(s.SlotStartUTC, seekerTz),
-                EndLocal = TimeZoneInfo.ConvertTimeFromUtc(s.SlotEndUTC, seekerTz),
-                StartUTC = s.SlotStartUTC,
-                EndUTC = s.SlotEndUTC,
-                IsBooked = s.IsBooked
-            }).ToList();
+                ProviderId = provider.UserId,
+                Name = provider.Name,
+                Specialty = provider.Specialty,
+                PhotoUrl = provider.PhotoUrl,
+                Description = provider.Description,
+                // The frontend uses this URL to redirect the user to Google
+                GoogleBookingUrl = provider.GoogleBookingUrl
+            };
+        }
+
+        public async Task UpdateGoogleLinkAsync(int providerUserId, string bookingUrl)
+        {
+            var provider = await _context.Providers.FirstOrDefaultAsync(p => p.UserId == providerUserId);
+            if (provider != null)
+            {
+                provider.GoogleBookingUrl = bookingUrl;
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

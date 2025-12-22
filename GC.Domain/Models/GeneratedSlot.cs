@@ -2,6 +2,7 @@
 
 namespace Domain.Models
 {
+    /*
     public class GeneratedSlot
     {
         [Key]
@@ -22,4 +23,6 @@ namespace Domain.Models
         public Provider Provider { get; set; }
         public Appointment Appointment { get; set; }
     }
+    */
+
 }

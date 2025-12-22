@@ -35,8 +35,8 @@ namespace GlobalConnect.Infrastructure.Data
 
             // === Configuration 3: Composite Keys or Indexes (if needed) ===
             // Example: Fast lookup for slots by Date + Provider
-            modelBuilder.Entity<GeneratedSlot>()
-                .HasIndex(s => new { s.ProviderId, s.SlotStartUTC });
+            //modelBuilder.Entity<GeneratedSlot>()
+             //   .HasIndex(s => new { s.ProviderId, s.SlotStartUTC });
 
             //modelBuilder.Entity<User>()
             //    .Property(e => e.Id)
@@ -47,8 +47,8 @@ namespace GlobalConnect.Infrastructure.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<ProviderLanguage> ProviderLanguages { get; set; }
-        public DbSet<WorkingHour> WorkingHours { get; set; }
-        public DbSet<GeneratedSlot> GeneratedSlots { get; set; }
+        //public DbSet<WorkingHour> WorkingHours { get; set; }
+        //public DbSet<GeneratedSlot> GeneratedSlots { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
     }
 }

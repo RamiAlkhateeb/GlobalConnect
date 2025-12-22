@@ -43,6 +43,7 @@ namespace GlobalConnect.UnitTests.Services
                 Password = "Pass123!",
                 IsProvider = true, // Crucial
                 PreferredLanguage = "en",
+                Nationality = "Syria",
                 TimezoneId = "UTC"
             };
 
@@ -69,7 +70,12 @@ namespace GlobalConnect.UnitTests.Services
         {
             // Arrange
             using var context = DbContextFactory.Create();
-            context.Users.Add(new User { Email = "existing@test.com", PasswordHash = "x", PreferredLanguage = "en", TimezoneId = "UTC" });
+            context.Users.Add(new User {
+                Email = "existing@test.com",
+                Nationality = "USA",
+                PasswordHash = "x", 
+                PreferredLanguage = "en", 
+                TimezoneId = "UTC" });
             await context.SaveChangesAsync();
 
             var service = new AuthService(context, _mockHasher.Object, _mockConfig.Object);
