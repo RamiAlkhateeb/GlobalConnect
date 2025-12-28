@@ -1,5 +1,4 @@
-﻿using Domain.Models;
-using GlobalConnect.Application.Modules.Availability.DTOs;
+﻿using GlobalConnect.Application.Modules.Availability.DTOs;
 using GlobalConnect.Domain.Models;
 using GlobalConnect.Infrastructure.Services;
 using GlobalConnect.UnitTests.Helpers;
@@ -56,60 +55,6 @@ namespace GlobalConnect.UnitTests.Services
         #endregion
 
 
-        [Fact]
-        public async Task SearchProvidersAsync_ShouldConvertUtcToSeekerLocalTime()
-        {
-            // Arrange
-            using var context = DbContextFactory.Create();
-            var service = new AvailabilityService(context);
-
-            var SlotStartUTC = DateTime.Parse("2026-01-01T14:00:00Z"); // 2 PM UTC
-            var SlotEndUTC = DateTime.Parse("2026-01-01T15:00:00Z");
-            // 2. STRIP THE KIND: Tell .NET this is "Unspecified" 
-            // This allows ConvertTimeToUtc to apply the provider's timezone rules correctly.
-            var startLocal = DateTime.SpecifyKind(SlotStartUTC, DateTimeKind.Unspecified);
-            var endLocal = DateTime.SpecifyKind(SlotEndUTC, DateTimeKind.Unspecified);
-
-            // Data: Slot at 14:00 UTC
-            var providerUser = new User { Id = 10, TimezoneId = "UTC", Email = "doc@ny.com", PasswordHash = "123123123", PreferredLanguage = "en" };
-            var provider = new Provider { UserId = 10, Name = "Dr. Test", HourlyRateUSD = 100 , Description="cool", Specialty = "test" };
-
-            var providerTz = TimeZoneInfo.FindSystemTimeZoneById(providerUser.TimezoneId);
-
-            // Convert to UTC (Handling DST automatically)
-            var startUtc = TimeZoneInfo.ConvertTimeToUtc(startLocal, providerTz);
-            var endUtc = TimeZoneInfo.ConvertTimeToUtc(endLocal, providerTz);
-            /*
-             var slot = new GeneratedSlot
-            {
-                Id = 1,
-                ProviderId = 10,
-                SlotStartUTC = startUtc, // 2 PM UTC
-                SlotEndUTC = endUtc,
-                IsBooked = false
-            };
-
-            // Seeker is in Berlin (UTC+1)
-            var request = new SearchRequestDto { SeekerTimezoneId = "Europe/Berlin" };
-
-            // Act
-            var results = await service.SearchProvidersAsync(request);
-
-            // Assert
-            var resultSlot = results.First().AvailableSlots.First();
-
-            // 14:00 UTC -> Should be 15:00 Berlin
-            Assert.Equal(16, resultSlot.StartLocal.Hour);
-             */
-
-
-            context.Users.Add(providerUser);
-            context.Providers.Add(provider);
-            //context.GeneratedSlots.Add(slot);
-            
-            await context.SaveChangesAsync();
-
-            
-        }
+        
     }
 }

@@ -9,8 +9,7 @@ namespace GlobalConnect.Application.Modules.Booking.Interfaces
 {
     public interface IBookingService
     {
-        //Task<int> CreateBookingAsync(int seekerId, CreateBookingDto request);
-        //Task CancelBookingAsync(int userId, int bookingId);
+        
         Task<List<BookingDto>> GetSeekerBookingsAsync(int seekerId);
         Task<List<BookingDto>> GetProviderAppointmentsAsync(int providerId);
         Task CompleteAppointmentAsync(int appointmentId, int userId);

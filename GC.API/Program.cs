@@ -8,6 +8,7 @@ using GlobalConnect.Application.Modules.Identity.DTOs;
 using GlobalConnect.Application.Modules.Provider.Interfaces;
 using GlobalConnect.Infrastructure.Data;
 using GlobalConnect.Infrastructure.Services;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,26 +23,6 @@ var jwtKey = builder.Configuration["JwtSettings:Key"] ?? "super_secret_key_must_
 var issuer = builder.Configuration["JwtSettings:Issuer"] ?? "GlobalConnectAPI";
 var audience = builder.Configuration["JwtSettings:Audience"] ?? "GlobalConnectClient";
 
-// --- 2. ADD AUTHENTICATION SERVICES ---
-builder.Services.AddAuthentication(options =>
-{
-    // These tell the app to use "Bearer" as the default way to check credentials
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = issuer,
-        ValidAudience = audience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
-    };
-});
 
 // Add services to the container.
 
@@ -49,13 +30,31 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IProviderService, ProviderService>();
 builder.Services.AddScoped<IAvailabilityService, AvailabilityService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IGoogleCalendarService, GoogleCalendarService>();
+// Add Services
+builder.Services.AddScoped<GoogleAuthService>();
+builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
-builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+// Configure Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+        };
+    }); 
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequest>(); // Finds all validators

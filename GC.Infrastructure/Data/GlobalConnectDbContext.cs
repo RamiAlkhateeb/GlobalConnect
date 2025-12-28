@@ -1,5 +1,4 @@
-﻿using Domain.Models;
-using GlobalConnect.Domain.Models;
+﻿using GlobalConnect.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,36 +18,48 @@ namespace GlobalConnect.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // === Configuration 1: One-to-One Relationship (User <-> Provider) ===
-            // A User has one Provider Profile. A Provider Profile belongs to one User.
-            modelBuilder.Entity<Provider>()
-                .HasOne(p => p.User)
-                .WithOne(u => u.ProviderProfile)
-                .HasForeignKey<Provider>(p => p.UserId)
-                .OnDelete(DeleteBehavior.Cascade); // If User is deleted, delete Profile
+            // -----------------------------
+            // 1. User Configuration
+            // -----------------------------
+            modelBuilder.Entity<User>()
+                .HasKey(u => u.Id); // Int is PK
 
-            // === Configuration 2: Money Precision ===
-            // SQL Server needs to know the precision for the 'money' or 'decimal' type
-            modelBuilder.Entity<Provider>()
-                .Property(p => p.HourlyRateUSD)
-                .HasColumnType("decimal(18,2)");
 
-            // === Configuration 3: Composite Keys or Indexes (if needed) ===
-            // Example: Fast lookup for slots by Date + Provider
-            //modelBuilder.Entity<GeneratedSlot>()
-             //   .HasIndex(s => new { s.ProviderId, s.SlotStartUTC });
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
 
-            //modelBuilder.Entity<User>()
-            //    .Property(e => e.Id)
-            //    .UseIdentityColumn();
+            // -----------------------------
+            // 2. One-to-One (User <-> ProviderProfile)
+            // -----------------------------
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.ProviderProfile)
+                .WithOne(p => p.User)
+                .HasForeignKey<Provider>(p => p.UserId) // Int FK
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // -----------------------------
+            // 3. Many-to-Many (Provider <-> Language)
+            // -----------------------------
+            modelBuilder.Entity<ProviderLanguage>()
+                .HasKey(pl => new { pl.ProviderId, pl.LanguageId });
+
+            // Seed Languages (Initial Data)
+            modelBuilder.Entity<Language>().HasData(
+                new Language { LanguageId = 1, Name = "English" },
+                new Language { LanguageId = 2, Name = "Arabic" },
+                new Language { LanguageId = 3, Name = "French" },
+                new Language { LanguageId = 4, Name = "Spanish" },
+                new Language { LanguageId = 5, Name = "German" }
+                );
+
         }
 
         // The Tables in your Database
         public DbSet<User> Users { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<ProviderLanguage> ProviderLanguages { get; set; }
-        //public DbSet<WorkingHour> WorkingHours { get; set; }
-        //public DbSet<GeneratedSlot> GeneratedSlots { get; set; }
+        public DbSet<Language> Languages { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
     }
 }

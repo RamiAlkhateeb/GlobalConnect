@@ -11,9 +11,6 @@ namespace Application.Modules.Identity.Interfaces
     public interface IAuthService
     {
         // Returns AuthResponse on success, throws Exception on failure
-        Task<AuthResponse> RegisterAsync(RegisterRequest request);
-
-        // Login method would go here...
-        Task<AuthResponse> LoginAsync(LoginRequest request);
+        Task<AuthResponseDto> LoginWithGoogleAsync(string googleIdToken);
     }
 }

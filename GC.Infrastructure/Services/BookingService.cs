@@ -1,8 +1,8 @@
-﻿using Domain.Models;
-using GlobalConnect.Application.Modules.Booking.DTOs;
+﻿using GlobalConnect.Application.Modules.Booking.DTOs;
 using GlobalConnect.Application.Modules.Booking.Interfaces;
 using GlobalConnect.Domain.Enums;
 using GlobalConnect.Domain.Exceptions;
+using GlobalConnect.Domain.Models;
 using GlobalConnect.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -188,14 +188,14 @@ namespace GlobalConnect.Infrastructure.Services
                     GoogleEventId = googleEventId,
                     //SeekerEmail = gEvent.Attendees?.FirstOrDefault()?.Email ?? "Unknown",
                     Status = "Confirmed",
-                    BookingTimeUtc = gEvent.Start.DateTimeDateTimeOffset?.UtcDateTime ?? DateTime.UtcNow
+                    ScheduledAt = gEvent.Start.DateTimeDateTimeOffset?.UtcDateTime ?? DateTime.UtcNow
                 };
                 _context.Appointments.Add(newBooking);
             }
             else
             {
                 // 4. Update existing (in case the time changed on Google)
-                existingBooking.BookingTimeUtc = gEvent.Start.DateTimeDateTimeOffset?.UtcDateTime ?? DateTime.UtcNow;
+                existingBooking.ScheduledAt = gEvent.Start.DateTimeDateTimeOffset?.UtcDateTime ?? DateTime.UtcNow;
             }
 
             await _context.SaveChangesAsync();
@@ -205,15 +205,17 @@ namespace GlobalConnect.Infrastructure.Services
         {
             return await _context.Appointments
                 .Where(b => b.Provider.UserId == providerUserId)
-                .OrderByDescending(b => b.BookingTimeUtc)
+                .OrderByDescending(b => b.ScheduledAt)
                 .Select(b => new BookingDto
                 {
                     AppointmentId = b.Id,
                     //SeekerEmail = b.SeekerEmail,
-                    StartTimeLocal = b.BookingTimeUtc,
+                    StartTimeLocal = b.ScheduledAt,
                     Status = b.Status
                 })
                 .ToListAsync();
         }
+
+
     }
 }

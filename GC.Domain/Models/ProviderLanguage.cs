@@ -5,19 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace GlobalConnect.Domain.Models
 {
     public class ProviderLanguage
     {
-        [Key]
-        public int Id { get; set; }
 
         public int ProviderId { get; set; }
-
-        [Required, MaxLength(10)]
-        public string LanguageCode { get; set; }
-
-        // Navigation property
-        public Provider Provider { get; set; }
+        public virtual Provider Provider { get; set; } = null!;
+        public int LanguageId { get; set; }
+        public virtual Language Language { get; set; } = null!;
     }
 }

@@ -408,7 +408,6 @@ D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Infrastructure.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Application.pdb
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Domain.pdb
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Infrastructure.pdb
-D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.MvcApplicationPartsAssemblyInfo.cs
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\scopedcss\bundle\API.styles.css
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\staticwebassets.build.json
 D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\staticwebassets.build.json.cache
@@ -428,3 +427,4 @@ D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Google.Apis.Core.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\Newtonsoft.Json.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\System.Management.dll
 D:\Work\GlobalConnect\GC.API\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Management.dll
+D:\Work\GlobalConnect\GC.API\obj\Debug\net9.0\API.MvcApplicationPartsAssemblyInfo.cs

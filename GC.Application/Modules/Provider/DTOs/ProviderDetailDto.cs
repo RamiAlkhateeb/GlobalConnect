@@ -10,15 +10,13 @@ namespace GlobalConnect.Application.Modules.Provider.DTOs
     {
         public int ProviderId { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; } // Coming from the User table
-        public string PhotoUrl { get; set; }
+        //public string PhotoUrl { get; set; }
         public string GoogleBookingUrl { get; set; }
         public string Specialty { get; set; }
-        public string Description { get; set; }
+        public string Bio { get; set; }
         public string Nationality { get; set; }
         public decimal HourlyRateUSD { get; set; }
-        public string Timezone { get; set; } // Coming from the User table
-        public List<string> Languages { get; set; } // Simplified list of codes
+        public List<int> LanguageIds { get; set; } = new();
     }
 
     // Input for the search bar

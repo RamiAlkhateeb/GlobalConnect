@@ -10,10 +10,6 @@ namespace GlobalConnect.Application.Modules.Availability.Interfaces
 {
     public interface IAvailabilityService
     {
-        //Task SetWorkingHoursAsync(int providerId, List<WorkingHourDto> workingHours);
-        //Task GenerateSlotsAsync(int providerId, int daysToGenerate = 30);
-        //Task<List<SlotDto>> GetProviderSlotsAsync(SearchRequestDto request);
-
         Task<ProviderDetailDto> GetProviderProfileAsync(int providerId);
         Task UpdateGoogleLinkAsync(int providerUserId, string bookingUrl);
     }

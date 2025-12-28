@@ -1,4 +1,4 @@
-﻿using Application.Modules.Provider.DTOs;
+﻿    using Application.Modules.Provider.DTOs;
 using AutoMapper;
 using GlobalConnect.Application.Modules.Provider.DTOs;
 using GlobalConnect.Application.Modules.Provider.Interfaces;
@@ -11,6 +11,7 @@ using System.Security.Claims;
 
 namespace GlobalConnect.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProvidersController : ControllerBase
@@ -22,35 +23,30 @@ namespace GlobalConnect.API.Controllers
             _providerService = providerService;
         }
 
-        private int GetCurrentUserId()
+        // Helper to get User ID from JWT
+        private int GetUserId()
         {
-            var idClaim = User.FindFirst(ClaimTypes.NameIdentifier); // standard JWT 'sub' claim
-            if (idClaim == null) throw new UnauthorizedAccessException("Invalid Token: Missing User ID.");
+            var idClaim = User.FindFirst(ClaimTypes.NameIdentifier); // standard 'sub' claim
+            if (idClaim == null) throw new UnauthorizedAccessException();
             return int.Parse(idClaim.Value);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult> GetProvider(int id)
-        {
-            var providerDto = await _providerService.GetProviderByIdAsync(id);
-            if (providerDto == null)
-            {
-                return NotFound(new { message = $"Provider with ID {id} not found." });
-            }
 
+        [HttpGet("my-profile")]
+        public async Task<ActionResult> GetProvider()
+        {
+            var providerDto = await _providerService.GetProviderByIdAsync(GetUserId());
+         
             return Ok(providerDto);
         }
 
-        [Authorize(Roles = "Provider")]
         [HttpPut("profile")]
         public async Task<IActionResult> UpdateProfile([FromBody] UpdateProviderDto dto)
         {
             try
             {
-                // Get ID from the JWT token (No hardcoded IDs!)
-                int providerId = GetCurrentUserId();
 
-                await _providerService.UpdateProviderProfileAsync(providerId, dto);
+                await _providerService.UpdateProviderProfileAsync(GetUserId(), dto);
 
                 return Ok(new { message = "Profile updated successfully." });
             }
@@ -64,13 +60,19 @@ namespace GlobalConnect.API.Controllers
             }
         }
 
-        // Step 1: Browse List
-        // GET: /api/providers?specialty=dentist&language=en
-        [HttpGet]
-        public async Task<IActionResult> Search([FromQuery] ProviderSearchQuery query)
+        [HttpGet("languages")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetLanguages()
         {
-            var results = await _providerService.SearchProvidersAsync(query);
-            return Ok(results);
+            return Ok(await _providerService.GetAllLanguagesAsync());
+        }
+
+        [HttpGet] // GET api/provider
+        [AllowAnonymous] // Allow clients to see this without logging in? Or [Authorize] if private.
+        public async Task<IActionResult> GetAllProviders([FromQuery] string? search)
+        {
+            var providers = await _providerService.SearchProvidersAsync(search);
+            return Ok(providers);
         }
 
 

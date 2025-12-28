@@ -1,5 +1,4 @@
-﻿using Domain.Models;
-using GlobalConnect.Application.Modules.Availability.DTOs;
+﻿using GlobalConnect.Application.Modules.Availability.DTOs;
 using GlobalConnect.Application.Modules.Availability.Interfaces;
 using GlobalConnect.Application.Modules.Provider.DTOs;
 using GlobalConnect.Domain.Exceptions;
@@ -21,9 +20,6 @@ namespace GlobalConnect.Infrastructure.Services
         {
             _context = context;
         }
-
-
-
 
         #region GenerateSlotsAsync and SetWorkingHoursAsync
         /*
@@ -171,12 +167,14 @@ namespace GlobalConnect.Infrastructure.Services
                 ProviderId = provider.UserId,
                 Name = provider.Name,
                 Specialty = provider.Specialty,
-                PhotoUrl = provider.PhotoUrl,
-                Description = provider.Description,
+                //PhotoUrl = provider.PhotoUrl,
+                Bio = provider.Bio,
                 // The frontend uses this URL to redirect the user to Google
                 GoogleBookingUrl = provider.GoogleBookingUrl
             };
         }
+
+        
 
         public async Task UpdateGoogleLinkAsync(int providerUserId, string bookingUrl)
         {
@@ -187,5 +185,6 @@ namespace GlobalConnect.Infrastructure.Services
                 await _context.SaveChangesAsync();
             }
         }
+
     }
 }

@@ -22,7 +22,7 @@ namespace Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Models.Appointment", b =>
+            modelBuilder.Entity("GlobalConnect.Domain.Models.Appointment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,20 +30,20 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("BookingTimeUtc")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<string>("GoogleEventId")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("MeetingLink")
                         .HasColumnType("text");
 
                     b.Property<int>("ProviderId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("SeekerId")
-                        .HasColumnType("integer");
+                    b.Property<DateTime>("ScheduledAt")
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("SlotId")
+                    b.Property<int>("SeekerId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Status")
@@ -60,14 +60,59 @@ namespace Infrastructure.Migrations
                     b.ToTable("Appointments");
                 });
 
-            modelBuilder.Entity("Domain.Models.Provider", b =>
+            modelBuilder.Entity("GlobalConnect.Domain.Models.Language", b =>
+                {
+                    b.Property<int>("LanguageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("LanguageId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("LanguageId");
+
+                    b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            LanguageId = 1,
+                            Name = "English"
+                        },
+                        new
+                        {
+                            LanguageId = 2,
+                            Name = "Arabic"
+                        },
+                        new
+                        {
+                            LanguageId = 3,
+                            Name = "French"
+                        },
+                        new
+                        {
+                            LanguageId = 4,
+                            Name = "Spanish"
+                        },
+                        new
+                        {
+                            LanguageId = 5,
+                            Name = "German"
+                        });
+                });
+
+            modelBuilder.Entity("GlobalConnect.Domain.Models.Provider", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Bio")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
 
                     b.Property<string>("GoogleBookingUrl")
                         .HasColumnType("text");
@@ -79,15 +124,17 @@ namespace Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<decimal>("HourlyRateUSD")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("money");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<string>("PhotoUrl")
-                        .HasColumnType("text");
+                    b.Property<string>("Nationality")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("Specialty")
                         .IsRequired()
@@ -99,25 +146,17 @@ namespace Infrastructure.Migrations
                     b.ToTable("Providers");
                 });
 
-            modelBuilder.Entity("Domain.Models.ProviderLanguage", b =>
+            modelBuilder.Entity("GlobalConnect.Domain.Models.ProviderLanguage", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("LanguageCode")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
-
                     b.Property<int>("ProviderId")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("ProviderId");
+                    b.HasKey("ProviderId", "LanguageId");
+
+                    b.HasIndex("LanguageId");
 
                     b.ToTable("ProviderLanguages");
                 });
@@ -135,45 +174,40 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
+                    b.Property<string>("GoogleId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
                     b.Property<bool>("IsProvider")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Nationality")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<Guid>("PublicId")
+                        .HasColumnType("uuid");
 
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PreferredLanguage")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
-
-                    b.Property<string>("TimezoneId")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                    b.Property<int>("Role")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Domain.Models.Appointment", b =>
+            modelBuilder.Entity("GlobalConnect.Domain.Models.Appointment", b =>
                 {
-                    b.HasOne("Domain.Models.Provider", "Provider")
+                    b.HasOne("GlobalConnect.Domain.Models.Provider", "Provider")
                         .WithMany()
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GlobalConnect.Domain.Models.User", "Seeker")
-                        .WithMany("SeekerAppointments")
+                        .WithMany()
                         .HasForeignKey("SeekerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -183,39 +217,49 @@ namespace Infrastructure.Migrations
                     b.Navigation("Seeker");
                 });
 
-            modelBuilder.Entity("Domain.Models.Provider", b =>
+            modelBuilder.Entity("GlobalConnect.Domain.Models.Provider", b =>
                 {
                     b.HasOne("GlobalConnect.Domain.Models.User", "User")
                         .WithOne("ProviderProfile")
-                        .HasForeignKey("Domain.Models.Provider", "UserId")
+                        .HasForeignKey("GlobalConnect.Domain.Models.Provider", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Models.ProviderLanguage", b =>
+            modelBuilder.Entity("GlobalConnect.Domain.Models.ProviderLanguage", b =>
                 {
-                    b.HasOne("Domain.Models.Provider", "Provider")
-                        .WithMany("SupportedLanguages")
+                    b.HasOne("GlobalConnect.Domain.Models.Language", "Language")
+                        .WithMany("ProviderLanguages")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GlobalConnect.Domain.Models.Provider", "Provider")
+                        .WithMany("ProviderLanguages")
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Language");
+
                     b.Navigation("Provider");
                 });
 
-            modelBuilder.Entity("Domain.Models.Provider", b =>
+            modelBuilder.Entity("GlobalConnect.Domain.Models.Language", b =>
                 {
-                    b.Navigation("SupportedLanguages");
+                    b.Navigation("ProviderLanguages");
+                });
+
+            modelBuilder.Entity("GlobalConnect.Domain.Models.Provider", b =>
+                {
+                    b.Navigation("ProviderLanguages");
                 });
 
             modelBuilder.Entity("GlobalConnect.Domain.Models.User", b =>
                 {
-                    b.Navigation("ProviderProfile")
-                        .IsRequired();
-
-                    b.Navigation("SeekerAppointments");
+                    b.Navigation("ProviderProfile");
                 });
 #pragma warning restore 612, 618
         }

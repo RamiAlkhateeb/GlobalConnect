@@ -3,24 +3,48 @@
   "WorkspaceRootPath": "D:\\Work\\GlobalConnect\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Work\\GlobalConnect\\GC.Infrastructure\\Migrations\\20251222221230_removeBooking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GC.Infrastructure\\Migrations\\20251222221230_removeBooking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8432101-178D-4396-A253-908CBF2B9EEE}|GC.Infrastructure\\Infrastructure.csproj|d:\\work\\globalconnect\\gc.infrastructure\\services\\providerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8432101-178D-4396-A253-908CBF2B9EEE}|GC.Infrastructure\\Infrastructure.csproj|solutionrelative:gc.infrastructure\\services\\providerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0160AC2-DB68-49AF-BB69-0F6598622925}|GC.API\\API.csproj|d:\\work\\globalconnect\\gc.api\\controllers\\webhookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F0160AC2-DB68-49AF-BB69-0F6598622925}|GC.API\\API.csproj|solutionrelative:gc.api\\controllers\\webhookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F0160AC2-DB68-49AF-BB69-0F6598622925}|GC.API\\API.csproj|d:\\work\\globalconnect\\gc.api\\controllers\\providerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0160AC2-DB68-49AF-BB69-0F6598622925}|GC.API\\API.csproj|solutionrelative:gc.api\\controllers\\providerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0160AC2-DB68-49AF-BB69-0F6598622925}|GC.API\\API.csproj|d:\\work\\globalconnect\\gc.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F0160AC2-DB68-49AF-BB69-0F6598622925}|GC.API\\API.csproj|solutionrelative:gc.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8432101-178D-4396-A253-908CBF2B9EEE}|GC.Infrastructure\\Infrastructure.csproj|d:\\work\\globalconnect\\gc.infrastructure\\services\\jwttokengenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8432101-178D-4396-A253-908CBF2B9EEE}|GC.Infrastructure\\Infrastructure.csproj|solutionrelative:gc.infrastructure\\services\\jwttokengenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{262AD6A6-8693-48AA-9805-3F0F8A6A9003}|GlobalConnect.UnitTests\\GlobalConnect.UnitTests.csproj|d:\\work\\globalconnect\\globalconnect.unittests\\services\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{262AD6A6-8693-48AA-9805-3F0F8A6A9003}|GlobalConnect.UnitTests\\GlobalConnect.UnitTests.csproj|solutionrelative:globalconnect.unittests\\services\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3BA53722-093A-4B61-BC09-5393E439A869}|GC.Application\\Application.csproj|d:\\work\\globalconnect\\gc.application\\modules\\provider\\interfaces\\iproviderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3BA53722-093A-4B61-BC09-5393E439A869}|GC.Application\\Application.csproj|solutionrelative:gc.application\\modules\\provider\\interfaces\\iproviderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AF4B82D6-EFBE-479A-BB0B-51BE22F59FDF}|GC.Domain\\Domain.csproj|d:\\work\\globalconnect\\gc.domain\\models\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4B82D6-EFBE-479A-BB0B-51BE22F59FDF}|GC.Domain\\Domain.csproj|solutionrelative:gc.domain\\models\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3BA53722-093A-4B61-BC09-5393E439A869}|GC.Application\\Application.csproj|d:\\work\\globalconnect\\gc.application\\modules\\provider\\dtos\\providerdetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3BA53722-093A-4B61-BC09-5393E439A869}|GC.Application\\Application.csproj|solutionrelative:gc.application\\modules\\provider\\dtos\\providerdetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3BA53722-093A-4B61-BC09-5393E439A869}|GC.Application\\Application.csproj|d:\\work\\globalconnect\\gc.application\\modules\\provider\\dtos\\updateproviderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3BA53722-093A-4B61-BC09-5393E439A869}|GC.Application\\Application.csproj|solutionrelative:gc.application\\modules\\provider\\dtos\\updateproviderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0160AC2-DB68-49AF-BB69-0F6598622925}|GC.API\\API.csproj|d:\\work\\globalconnect\\gc.api\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0160AC2-DB68-49AF-BB69-0F6598622925}|GC.API\\API.csproj|solutionrelative:gc.api\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF4B82D6-EFBE-479A-BB0B-51BE22F59FDF}|GC.Domain\\Domain.csproj|d:\\work\\globalconnect\\gc.domain\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF4B82D6-EFBE-479A-BB0B-51BE22F59FDF}|GC.Domain\\Domain.csproj|solutionrelative:gc.domain\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3BA53722-093A-4B61-BC09-5393E439A869}|GC.Application\\Application.csproj|d:\\work\\globalconnect\\gc.application\\common\\dtos\\languagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3BA53722-093A-4B61-BC09-5393E439A869}|GC.Application\\Application.csproj|solutionrelative:gc.application\\common\\dtos\\languagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8432101-178D-4396-A253-908CBF2B9EEE}|GC.Infrastructure\\Infrastructure.csproj|d:\\work\\globalconnect\\gc.infrastructure\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8432101-178D-4396-A253-908CBF2B9EEE}|GC.Infrastructure\\Infrastructure.csproj|solutionrelative:gc.infrastructure\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF4B82D6-EFBE-479A-BB0B-51BE22F59FDF}|GC.Domain\\Domain.csproj|d:\\work\\globalconnect\\gc.domain\\models\\language.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF4B82D6-EFBE-479A-BB0B-51BE22F59FDF}|GC.Domain\\Domain.csproj|solutionrelative:gc.domain\\models\\language.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,67 +62,145 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20251222221230_removeBooking.cs",
-              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.Infrastructure\\Migrations\\20251222221230_removeBooking.cs",
-              "RelativeDocumentMoniker": "GC.Infrastructure\\Migrations\\20251222221230_removeBooking.cs",
-              "ToolTip": "D:\\Work\\GlobalConnect\\GC.Infrastructure\\Migrations\\20251222221230_removeBooking.cs",
-              "RelativeToolTip": "GC.Infrastructure\\Migrations\\20251222221230_removeBooking.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "JwtTokenGenerator.cs",
+              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.Infrastructure\\Services\\JwtTokenGenerator.cs",
+              "RelativeDocumentMoniker": "GC.Infrastructure\\Services\\JwtTokenGenerator.cs",
+              "ToolTip": "D:\\Work\\GlobalConnect\\GC.Infrastructure\\Services\\JwtTokenGenerator.cs",
+              "RelativeToolTip": "GC.Infrastructure\\Services\\JwtTokenGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T22:12:30.492Z",
+              "WhenOpened": "2025-12-28T15:52:20.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProviderService.cs",
+              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.Infrastructure\\Services\\ProviderService.cs",
+              "RelativeDocumentMoniker": "GC.Infrastructure\\Services\\ProviderService.cs",
+              "ToolTip": "D:\\Work\\GlobalConnect\\GC.Infrastructure\\Services\\ProviderService.cs*",
+              "RelativeToolTip": "GC.Infrastructure\\Services\\ProviderService.cs*",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAUwDUAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T15:52:19.542Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "WebhooksController.cs",
-              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.API\\Controllers\\WebhooksController.cs",
-              "RelativeDocumentMoniker": "GC.API\\Controllers\\WebhooksController.cs",
-              "ToolTip": "D:\\Work\\GlobalConnect\\GC.API\\Controllers\\WebhooksController.cs",
-              "RelativeToolTip": "GC.API\\Controllers\\WebhooksController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAjAAAAAAAAAA==",
+              "Title": "ProvidersController.cs",
+              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.API\\Controllers\\ProvidersController.cs",
+              "RelativeDocumentMoniker": "GC.API\\Controllers\\ProvidersController.cs",
+              "ToolTip": "D:\\Work\\GlobalConnect\\GC.API\\Controllers\\ProvidersController.cs",
+              "RelativeToolTip": "GC.API\\Controllers\\ProvidersController.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAWwCIAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T22:11:45.89Z",
+              "WhenOpened": "2025-12-28T13:12:23.648Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.API\\Program.cs",
-              "RelativeDocumentMoniker": "GC.API\\Program.cs",
-              "ToolTip": "D:\\Work\\GlobalConnect\\GC.API\\Program.cs",
-              "RelativeToolTip": "GC.API\\Program.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.API\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "GC.API\\Controllers\\DashboardController.cs",
+              "ToolTip": "D:\\Work\\GlobalConnect\\GC.API\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "GC.API\\Controllers\\DashboardController.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAMwEAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T19:55:41.469Z",
+              "WhenOpened": "2025-12-28T13:11:58.554Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AuthServiceTests.cs",
-              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GlobalConnect.UnitTests\\Services\\AuthServiceTests.cs",
-              "RelativeDocumentMoniker": "GlobalConnect.UnitTests\\Services\\AuthServiceTests.cs",
-              "ToolTip": "D:\\Work\\GlobalConnect\\GlobalConnect.UnitTests\\Services\\AuthServiceTests.cs",
-              "RelativeToolTip": "GlobalConnect.UnitTests\\Services\\AuthServiceTests.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAEwEgAAAAkAAAAAAAAAA==",
+              "Title": "IProviderService.cs",
+              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.Application\\Modules\\Provider\\Interfaces\\IProviderService.cs",
+              "RelativeDocumentMoniker": "GC.Application\\Modules\\Provider\\Interfaces\\IProviderService.cs",
+              "ToolTip": "D:\\Work\\GlobalConnect\\GC.Application\\Modules\\Provider\\Interfaces\\IProviderService.cs",
+              "RelativeToolTip": "GC.Application\\Modules\\Provider\\Interfaces\\IProviderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T19:39:01.419Z",
+              "WhenOpened": "2025-12-28T13:03:56.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LanguageDto.cs",
+              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.Application\\Common\\DTOs\\LanguageDto.cs",
+              "RelativeDocumentMoniker": "GC.Application\\Common\\DTOs\\LanguageDto.cs",
+              "ToolTip": "D:\\Work\\GlobalConnect\\GC.Application\\Common\\DTOs\\LanguageDto.cs",
+              "RelativeToolTip": "GC.Application\\Common\\DTOs\\LanguageDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T13:01:19.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UpdateProviderDto.cs",
+              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.Application\\Modules\\Provider\\DTOs\\UpdateProviderDto.cs",
+              "RelativeDocumentMoniker": "GC.Application\\Modules\\Provider\\DTOs\\UpdateProviderDto.cs",
+              "ToolTip": "D:\\Work\\GlobalConnect\\GC.Application\\Modules\\Provider\\DTOs\\UpdateProviderDto.cs",
+              "RelativeToolTip": "GC.Application\\Modules\\Provider\\DTOs\\UpdateProviderDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T13:00:24.853Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Appointment.cs",
-              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.Domain\\Models\\Appointment.cs",
-              "RelativeDocumentMoniker": "GC.Domain\\Models\\Appointment.cs",
-              "ToolTip": "D:\\Work\\GlobalConnect\\GC.Domain\\Models\\Appointment.cs",
-              "RelativeToolTip": "GC.Domain\\Models\\Appointment.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwCIAAAAmAAAAAAAAAA==",
+              "Title": "ProviderDetailDto.cs",
+              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.Application\\Modules\\Provider\\DTOs\\ProviderDetailDto.cs",
+              "RelativeDocumentMoniker": "GC.Application\\Modules\\Provider\\DTOs\\ProviderDetailDto.cs",
+              "ToolTip": "D:\\Work\\GlobalConnect\\GC.Application\\Modules\\Provider\\DTOs\\ProviderDetailDto.cs",
+              "RelativeToolTip": "GC.Application\\Modules\\Provider\\DTOs\\ProviderDetailDto.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAkwBYAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T20:13:36.952Z",
+              "WhenOpened": "2025-12-28T12:59:46.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.Infrastructure\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "GC.Infrastructure\\Services\\AuthService.cs",
+              "ToolTip": "D:\\Work\\GlobalConnect\\GC.Infrastructure\\Services\\AuthService.cs",
+              "RelativeToolTip": "GC.Infrastructure\\Services\\AuthService.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAiwCYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T12:48:09.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.Domain\\Models\\User.cs",
+              "RelativeDocumentMoniker": "GC.Domain\\Models\\User.cs",
+              "ToolTip": "D:\\Work\\GlobalConnect\\GC.Domain\\Models\\User.cs",
+              "RelativeToolTip": "GC.Domain\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T22:53:38.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Language.cs",
+              "DocumentMoniker": "D:\\Work\\GlobalConnect\\GC.Domain\\Models\\Language.cs",
+              "RelativeDocumentMoniker": "GC.Domain\\Models\\Language.cs",
+              "ToolTip": "D:\\Work\\GlobalConnect\\GC.Domain\\Models\\Language.cs",
+              "RelativeToolTip": "GC.Domain\\Models\\Language.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T11:51:16.807Z",
               "EditorCaption": ""
             }
           ]

@@ -1,6 +1,6 @@
-﻿using Domain.Models;
-using GlobalConnect.Application.Common.Interfaces;
+﻿using GlobalConnect.Application.Common.Interfaces;
 using GlobalConnect.Application.Modules.Booking.Interfaces;
+using GlobalConnect.Domain.Models;
 using GlobalConnect.Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,7 +39,7 @@ namespace API.Controllers
                     //SeekerEmail = googleEvent.Attendees.FirstOrDefault(a => !a.ResponseStatus.Equals("declined"))?.Email ?? "Unknown",
                     GoogleEventId = googleEvent.Id,
                     Status = "Confirmed",
-                    BookingTimeUtc = DateTime.UtcNow,
+                    ScheduledAt = DateTime.UtcNow,
                 };
 
                 _context.Appointments.Add(booking);

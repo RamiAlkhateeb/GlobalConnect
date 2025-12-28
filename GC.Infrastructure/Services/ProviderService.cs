@@ -1,8 +1,10 @@
 ﻿using Application.Modules.Provider.DTOs;
-using Domain.Models;
+using Domain.Enums;
+using GlobalConnect.Application.Common.DTOs;
 using GlobalConnect.Application.Modules.Provider.DTOs;
 using GlobalConnect.Application.Modules.Provider.Interfaces;
 using GlobalConnect.Domain.Exceptions;
+using GlobalConnect.Domain.Models;
 using GlobalConnect.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
@@ -23,12 +25,18 @@ namespace GlobalConnect.Infrastructure.Services
             _context = context;
         }
 
-        public async Task<ProviderDetailDto?> GetProviderByIdAsync(int id)
+        public async Task<List<LanguageDto>> GetAllLanguagesAsync()
+        {
+            return await _context.Languages
+                .Select(l => new LanguageDto { Id = l.LanguageId, Name = l.Name })
+                .ToListAsync();
+        }
+
+        public async Task<ProviderDetailDto> GetProviderByIdAsync(int id)
         {
             // 1. Query the database efficiently
             var providerEntity = await _context.Providers
-                .Include(p => p.User)                // Join with User table for Email/Timezone
-                .Include(p => p.SupportedLanguages)  // Join with Languages table
+                .Include(p => p.ProviderLanguages)  // Join with Languages table
                 .FirstOrDefaultAsync(p => p.UserId == id);
 
             if (providerEntity == null) return null;
@@ -38,87 +46,92 @@ namespace GlobalConnect.Infrastructure.Services
             {
                 ProviderId = providerEntity.UserId,
                 Name = providerEntity.Name,
-                Email = providerEntity.User.Email, // Accessing joined User data
                 Specialty = providerEntity.Specialty,
-                Description = providerEntity.Description,
+                Nationality = providerEntity.Nationality,
+                Bio = providerEntity.Bio,
+                GoogleBookingUrl = !string.IsNullOrEmpty(providerEntity.GoogleBookingUrl)? providerEntity.GoogleBookingUrl : "" ,
                 HourlyRateUSD = providerEntity.HourlyRateUSD,
-                Timezone = providerEntity.User.TimezoneId,
-                
-                // 3. Transform complex relation to simple list of strings
-                Languages = providerEntity.SupportedLanguages
-                    .Select(l => l.LanguageCode)
-                    .ToList()
+                LanguageIds = _context.ProviderLanguages?
+                    .Where(l => l.Language != null)
+                    .Select(l => l.Language.LanguageId)
+                    .ToList() ?? new List<int>(),
             };
         }
 
         public async Task UpdateProviderProfileAsync(int providerId, UpdateProviderDto dto)
         {
             // 1. Fetch the existing provider profile
-            var provider = await _context.Providers
-                .FirstOrDefaultAsync(p => p.UserId == providerId);
+            var user = await _context.Users
+                .Include(u => u.ProviderProfile)
+                .ThenInclude(p => p.ProviderLanguages)
+                .FirstOrDefaultAsync(u => u.Id == providerId);
 
-            if (provider == null)
-                throw new DomainException("Provider profile not found.");
+            if (user == null)
+                throw new Exception("Provider profile not found.");
 
-            // 2. Update fields
-            provider.Name = dto.Name;
-            provider.Specialty = dto.Specialty;
-            provider.Description = dto.Description;
-            provider.HourlyRateUSD = dto.HourlyRateUSD;
-            
-            foreach (var lang in dto.Languages)
+            // 1. Ensure Profile Exists
+            if (user.ProviderProfile == null)
             {
-                if (string.IsNullOrWhiteSpace(lang) || lang.Length != 2)
-                    throw new DomainException($"Invalid language code: {lang}");
-                var existingLang = _context.ProviderLanguages.FirstOrDefault(l => l.LanguageCode == lang);
-                if (existingLang == null)
-                {
-                    existingLang = new ProviderLanguage { 
-                        LanguageCode = lang,
-                        Provider = provider,
-                        ProviderId = provider.UserId
-
-                    };
-                    _context.ProviderLanguages.Add(existingLang);
-                    await _context.SaveChangesAsync();
-                }
-                //provider.SupportedLanguages.Add(existingLang);
+                user.ProviderProfile = new Provider { UserId = providerId };
+                // Also upgrade role to Provider if not already
+                if (user.Role == UserRole.Seeker) user.Role = UserRole.Provider;
             }
+            // 2. Update fields
+            user.ProviderProfile.Name = dto.Name;
+            user.ProviderProfile.Specialty = dto.Specialty;
+            user.ProviderProfile.HourlyRateUSD = dto.HourlyRateUSD;
+            user.ProviderProfile.Bio = dto.Bio;
+            user.ProviderProfile.Nationality = dto.Nationality;
+            user.ProviderProfile.GoogleBookingUrl = dto.GoogleBookingUrl;
+            // 3. Update Languages (Wipe and Replace Strategy)
+            // Remove existing
+            var currentLangs = user.ProviderProfile.ProviderLanguages.ToList();
+            _context.ProviderLanguages.RemoveRange(currentLangs);
 
-            // 3. Save changes
-            _context.Providers.Update(provider);
+            // Add new
+            foreach (var langId in dto.LanguageIds)
+            {
+                _context.ProviderLanguages.Add(new ProviderLanguage
+                {
+                    ProviderId = providerId,
+                    LanguageId = langId
+                });
+            }
             await _context.SaveChangesAsync();
         }
 
         // 1. SEARCH FOR PROVIDERS
-        public async Task<List<ProviderDetailDto>> SearchProvidersAsync(ProviderSearchQuery query)
+        public async Task<List<ProviderDetailDto>> SearchProvidersAsync(string? query)
         {
             var allProviders = _context.Providers
-                .Include(p => p.User) // Include User to get the Language
-                .AsQueryable();
+        .Include(p => p.ProviderLanguages)
+        .ThenInclude(pl => pl.Language)
+        .AsQueryable();
 
-            if (!string.IsNullOrEmpty(query.Specialty))
+            // Optional: Filter by name or specialty if query is provided
+            if (!string.IsNullOrWhiteSpace(query))
             {
-                allProviders = allProviders.Where(p => p.Specialty.Contains(query.Specialty));
+                query = query.ToLower();
+                allProviders = allProviders.Where(p =>
+                    p.Nationality.ToLower().Contains(query) ||
+                    p.Specialty.ToLower().Contains(query));
             }
 
-            if (!string.IsNullOrEmpty(query.Language))
-            {
-                allProviders = allProviders.Where(p => p.User.PreferredLanguage == query.Language);
-            }
 
             return await allProviders
                 .Select(p => new ProviderDetailDto
                 {
                     ProviderId = p.UserId,
                     Name = p.Name,
-                    Nationality = p.User.Nationality,
-                    PhotoUrl = p.PhotoUrl,
+                    Nationality = p.Nationality,
                     Specialty = p.Specialty,
+                    Bio = p.Bio,
+                    GoogleBookingUrl = p.GoogleBookingUrl,
                     HourlyRateUSD = p.HourlyRateUSD,
-                    Languages = p.SupportedLanguages.Select(l => l.LanguageCode).ToList()
+                    LanguageIds = p.ProviderLanguages.Select(l => l.Language.LanguageId).ToList()
                 })
                 .ToListAsync();
         }
+
     }
 }

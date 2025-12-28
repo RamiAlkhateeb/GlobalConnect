@@ -63,33 +63,5 @@ namespace API.Controllers
         }
 
 
-
-        // --- 5. REFERENCE DATA ---
-        // GET /api/reference
-        [AllowAnonymous]
-        [HttpGet("reference")]
-        public IActionResult GetReferenceData()
-        {
-            // In a real app, these come from the database or cache
-            var data = new ReferenceDataDto
-            {
-                Specialties = new List<ReferenceItemDto>
-    {
-        new ReferenceItemDto { Id = 1, Code = "PSY", Name = "Psychology" },
-        new ReferenceItemDto { Id = 2, Code = "DERM", Name = "Dermatology" }
-    },
-                Languages = new List<ReferenceItemDto>
-    {
-        new ReferenceItemDto { Id = 1, Code = "en", Name = "English" },
-        new ReferenceItemDto { Id = 2, Code = "es", Name = "Spanish" }
-    },
-                Nationalities = new List<ReferenceItemDto>
-    {
-        new ReferenceItemDto { Id = 1, Code = "US", Name = "American" },
-        new ReferenceItemDto { Id = 2, Code = "EG", Name = "Egyptian" }
-    }
-            };
-            return Ok(data);
-        }
     }
 }
