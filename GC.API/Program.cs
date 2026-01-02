@@ -2,7 +2,6 @@ using Application.Modules.Identity.Interfaces;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using GlobalConnect.Application.Common.Interfaces;
-using GlobalConnect.Application.Modules.Availability.Interfaces;
 using GlobalConnect.Application.Modules.Booking.Interfaces;
 using GlobalConnect.Application.Modules.Identity.DTOs;
 using GlobalConnect.Application.Modules.Provider.Interfaces;
@@ -31,7 +30,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProviderService, ProviderService>();
-builder.Services.AddScoped<IAvailabilityService, AvailabilityService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IGoogleCalendarService, GoogleCalendarService>();
 // Add Services

@@ -80,7 +80,7 @@ namespace GlobalConnect.Infrastructure.Services
             user.ProviderProfile.Name = dto.Name;
             user.ProviderProfile.Specialty = dto.Specialty;
             user.ProviderProfile.HourlyRateUSD = dto.HourlyRateUSD;
-            user.ProviderProfile.Bio = dto.Bio;
+            user.ProviderProfile.Bio = !String.IsNullOrEmpty(dto.Bio) ? dto.Bio : "";
             user.ProviderProfile.Nationality = dto.Nationality;
             user.ProviderProfile.GoogleBookingUrl = dto.GoogleBookingUrl;
             // 3. Update Languages (Wipe and Replace Strategy)
@@ -126,7 +126,8 @@ namespace GlobalConnect.Infrastructure.Services
                     Nationality = p.Nationality,
                     Specialty = p.Specialty,
                     Bio = p.Bio,
-                    GoogleBookingUrl = p.GoogleBookingUrl,
+                    PhotoUrl = p.User.PhotoUrl,
+                    GoogleBookingUrl = !string.IsNullOrEmpty(p.GoogleBookingUrl) ? p.GoogleBookingUrl : "",
                     HourlyRateUSD = p.HourlyRateUSD,
                     LanguageIds = p.ProviderLanguages.Select(l => l.Language.LanguageId).ToList()
                 })

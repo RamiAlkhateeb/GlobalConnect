@@ -13,6 +13,7 @@ namespace GlobalConnect.Application.Modules.Provider.DTOs
         //public string PhotoUrl { get; set; }
         public string GoogleBookingUrl { get; set; }
         public string Specialty { get; set; }
+        public string? PhotoUrl { get; set; } 
         public string Bio { get; set; }
         public string Nationality { get; set; }
         public decimal HourlyRateUSD { get; set; }

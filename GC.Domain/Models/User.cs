@@ -23,7 +23,8 @@ namespace GlobalConnect.Domain.Models
         [Required, MaxLength(255)]
         public string Email { get; set; } = string.Empty;
 
-        public bool IsProvider { get; set; } = false;
+        [MaxLength(500)]
+        public string? PhotoUrl { get; set; }
 
         [Required]
         public string GoogleId { get; set; } = string.Empty;

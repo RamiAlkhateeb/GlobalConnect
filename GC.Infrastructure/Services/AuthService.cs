@@ -48,11 +48,20 @@ namespace Infrastructure.Services
                     PublicId = Guid.NewGuid(),
                     Email = payload.Email,
                     GoogleId = payload.Subject,
-                    Role = UserRole.Seeker // Default to Client, can be changed later
+                    Role = UserRole.Seeker, // Default to Client, can be changed later
+                    PhotoUrl = payload.Picture
                 };
                 _context.Users.Add(user);
-                await _context.SaveChangesAsync();
             }
+            else
+            {
+                // OPTIONAL: Update photo if it changed on Google
+                if (user.PhotoUrl != payload.Picture)
+                {
+                    user.PhotoUrl = payload.Picture;
+                }
+            }
+            await _context.SaveChangesAsync();
 
             // 4. Generate JWT
             var token = _jwtGenerator.GenerateToken(user);
