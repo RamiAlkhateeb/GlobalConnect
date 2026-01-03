@@ -12,6 +12,7 @@
           "AutoMapper": "16.0.0",
           "Domain": "1.0.0",
           "FluentValidation.AspNetCore": "11.3.1",
+          "Google.Apis.Calendar.v3": "1.73.0.3993",
           "Infrastructure": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.11",
           "Microsoft.EntityFrameworkCore.Design": "9.0.11",

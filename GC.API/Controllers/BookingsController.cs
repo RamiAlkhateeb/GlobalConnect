@@ -19,47 +19,20 @@ namespace GlobalConnect.API.Controllers
             _service = service;
         }
 
-        private int GetCurrentUserId()
+        [HttpGet]
+        public async Task<IActionResult> GetMyAppointments()
         {
-            var idClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (idClaim == null) throw new UnauthorizedAccessException("User ID not found in token.");
-            return int.Parse(idClaim.Value);
+            var userId = int.Parse(User.FindFirst("id").Value);
+            return Ok(_service.GetMyAppointments(userId));
         }
 
-        #region create booking
-        //// 4. Create Booking
-        //[HttpPost]
-        //public async Task<IActionResult> CreateBooking([FromBody] CreateBookingDto request)
-        //{
-        //    int seekerId = GetCurrentUserId();
-        //    try
-        //    {
-        //        var bookingId = await _service.CreateBookingAsync(seekerId, request);
-        //        // Return 201 Created
-        //        return CreatedAtAction(nameof(CreateBooking), new { id = bookingId }, new { bookingId, status = "Confirmed" });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(new { error = ex.Message });
-        //    }
-        //}
-
-        //// Cancel Booking
-        //[HttpPost("{id}/cancel")]
-        //public async Task<IActionResult> CancelBooking(int id)
-        //{
-        //    int userId = GetCurrentUserId();
-        //    try
-        //    {
-        //        await _service.CancelBookingAsync(userId, id);
-        //        return Ok(new { message = "Booking cancelled successfully." });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(new { error = ex.Message });
-        //    }
-        //}
-        #endregion
+        [HttpPost("sync")]
+        public async Task<IActionResult> SyncWithGoogle([FromBody] SyncRequest request)
+        {
+            var userId = int.Parse(User.FindFirst("id").Value);
+            var newCount = await _service.SyncWithGoogle(userId, request);
+            return Ok(new { message = $"Synced {newCount} new appointments." });
+        }
 
     }
 }

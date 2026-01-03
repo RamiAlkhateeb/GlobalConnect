@@ -16,39 +16,29 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "API.Controllers.DashboardController",
-    "Method": "CompleteAppointment",
-    "RelativePath": "api/Dashboard/appointments/{id}/complete",
+    "ContainingType": "GlobalConnect.API.Controllers.BookingsController",
+    "Method": "GetMyAppointments",
+    "RelativePath": "api/Bookings",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GlobalConnect.API.Controllers.BookingsController",
+    "Method": "SyncWithGoogle",
+    "RelativePath": "api/Bookings/sync",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "request",
+        "Type": "GlobalConnect.Application.Modules.Booking.DTOs.SyncRequest",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.DashboardController",
-    "Method": "GetMyAppointments",
-    "RelativePath": "api/Dashboard/appointments/provider",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.DashboardController",
-    "Method": "GetMyBookings",
-    "RelativePath": "api/Dashboard/appointments/seeker",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -101,16 +91,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.WebhooksController",
-    "Method": "GoogleNotify",
-    "RelativePath": "api/Webhooks/google",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   }
 ]

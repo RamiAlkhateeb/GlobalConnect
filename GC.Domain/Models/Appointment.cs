@@ -9,19 +9,20 @@ namespace GlobalConnect.Domain.Models
         public int Id { get; set; }
 
         public int SeekerId { get; set; }
-        public User Seeker { get; set; }
+        public virtual User Seeker { get; set; }
 
         public int ProviderId { get; set; }
-        public Provider Provider { get; set; }
+        public virtual Provider Provider { get; set; }
 
 
         public string GoogleEventId { get; set; } //The unique ID of the event created in Google Calendar.
-        //public DateTime PaymentDeadline { get; set; }  //When the user must pay by (e.g., CreatedAt + 15 mins).
+        public string Title { get; set; } = string.Empty;
 
         [Required, MaxLength(50)]
         public string Status { get; set; } = "Confirmed"; // Confirmed, Cancelled, Completed
 
         public DateTime ScheduledAt { get; set; }
+        public DateTime EndTime { get; set; }
         public string? MeetingLink { get; set; } // The Google Meet link
 
     }

@@ -10,11 +10,7 @@ namespace GlobalConnect.Application.Modules.Booking.Interfaces
     public interface IBookingService
     {
         
-        Task<List<BookingDto>> GetSeekerBookingsAsync(int seekerId);
-        Task<List<BookingDto>> GetProviderAppointmentsAsync(int providerId);
-        Task CompleteAppointmentAsync(int appointmentId, int userId);
-
-        Task SyncBookingFromGoogleAsync(int providerId, string googleEventId);
-        Task<List<BookingDto>> GetProviderBookingsAsync(int providerUserId);
+        Task<List<BookingDto>> GetMyAppointments(int userId);
+        Task<int> SyncWithGoogle(int userId, SyncRequest request);
     }
 }

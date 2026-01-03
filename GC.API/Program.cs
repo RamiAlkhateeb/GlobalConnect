@@ -31,7 +31,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProviderService, ProviderService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
-builder.Services.AddScoped<IGoogleCalendarService, GoogleCalendarService>();
 // Add Services
 builder.Services.AddScoped<GoogleAuthService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();

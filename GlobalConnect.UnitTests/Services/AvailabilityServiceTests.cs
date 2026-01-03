@@ -1,5 +1,4 @@
-﻿using GlobalConnect.Application.Modules.Availability.DTOs;
-using GlobalConnect.Domain.Models;
+﻿using GlobalConnect.Domain.Models;
 using GlobalConnect.Infrastructure.Services;
 using GlobalConnect.UnitTests.Helpers;
 using System;

@@ -36,10 +36,10 @@
         }
       }
     },
-    "/api/Dashboard/appointments/seeker": {
+    "/api/Bookings": {
       "get": {
         "tags": [
-          "Dashboard"
+          "Bookings"
         ],
         "responses": {
           "200": {
@@ -48,34 +48,30 @@
         }
       }
     },
-    "/api/Dashboard/appointments/provider": {
-      "get": {
-        "tags": [
-          "Dashboard"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Dashboard/appointments/{id}/complete": {
+    "/api/Bookings/sync": {
       "post": {
         "tags": [
-          "Dashboard"
+          "Bookings"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SyncRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SyncRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SyncRequest"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -158,18 +154,6 @@
           }
         }
       }
-    },
-    "/api/Webhooks/google": {
-      "post": {
-        "tags": [
-          "Webhooks"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
     }
   },
   "components": {
@@ -178,6 +162,16 @@
         "type": "object",
         "properties": {
           "idToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SyncRequest": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
             "type": "string",
             "nullable": true
           }
