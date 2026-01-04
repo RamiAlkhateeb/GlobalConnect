@@ -1,5 +1,4 @@
-﻿using Application.Modules.Provider.DTOs;
-using GlobalConnect.Application.Common.DTOs;
+﻿using GlobalConnect.Application.Common.DTOs;
 using GlobalConnect.Application.Modules.Provider.DTOs;
 using System;
 using System.Collections.Generic;

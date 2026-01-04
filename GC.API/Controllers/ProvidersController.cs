@@ -1,5 +1,4 @@
-﻿    using Application.Modules.Provider.DTOs;
-using AutoMapper;
+﻿using AutoMapper;
 using GlobalConnect.Application.Modules.Provider.DTOs;
 using GlobalConnect.Application.Modules.Provider.Interfaces;
 using GlobalConnect.Domain.Exceptions;

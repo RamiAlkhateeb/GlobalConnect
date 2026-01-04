@@ -1,5 +1,4 @@
-﻿using Application.Modules.Provider.DTOs;
-using Domain.Enums;
+﻿using Domain.Enums;
 using GlobalConnect.Application.Common.DTOs;
 using GlobalConnect.Application.Modules.Provider.DTOs;
 using GlobalConnect.Application.Modules.Provider.Interfaces;

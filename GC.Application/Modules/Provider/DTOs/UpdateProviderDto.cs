@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Modules.Provider.DTOs
+namespace GlobalConnect.Application.Modules.Provider.DTOs
 {
     public class UpdateProviderDto
     {
