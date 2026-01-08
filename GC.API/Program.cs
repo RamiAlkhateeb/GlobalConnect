@@ -1,7 +1,6 @@
 using Application.Modules.Identity.Interfaces;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using GlobalConnect.Application.Common.Interfaces;
 using GlobalConnect.Application.Modules.Booking.Interfaces;
 using GlobalConnect.Application.Modules.Identity.DTOs;
 using GlobalConnect.Application.Modules.Provider.Interfaces;
@@ -10,7 +9,6 @@ using GlobalConnect.Infrastructure.Services;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
@@ -51,7 +49,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
         };
-    }); 
+    });
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequest>(); // Finds all validators
@@ -71,8 +69,10 @@ builder.Services.AddCors(opt =>
 });
 
 // 1. Add CORS
-builder.Services.AddCors(options => {
-    options.AddPolicy("AllowAngular", policy => {
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular", policy =>
+    {
         policy.WithOrigins("http://localhost:4200")
               .AllowAnyHeader()
               .AllowAnyMethod();

@@ -87,7 +87,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Application.Modules.Provider.DTOs.UpdateProviderDto",
+        "Type": "GlobalConnect.Application.Modules.Provider.DTOs.UpdateProviderDto",
         "IsRequired": true
       }
     ],

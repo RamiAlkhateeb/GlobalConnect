@@ -2,16 +2,9 @@
 using GlobalConnect.Application.Common.DTOs;
 using GlobalConnect.Application.Modules.Provider.DTOs;
 using GlobalConnect.Application.Modules.Provider.Interfaces;
-using GlobalConnect.Domain.Exceptions;
 using GlobalConnect.Domain.Models;
 using GlobalConnect.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GlobalConnect.Infrastructure.Services
 {
@@ -48,7 +41,7 @@ namespace GlobalConnect.Infrastructure.Services
                 Specialty = providerEntity.Specialty,
                 Nationality = providerEntity.Nationality,
                 Bio = providerEntity.Bio,
-                GoogleBookingUrl = !string.IsNullOrEmpty(providerEntity.GoogleBookingUrl)? providerEntity.GoogleBookingUrl : "" ,
+                GoogleBookingUrl = !string.IsNullOrEmpty(providerEntity.GoogleBookingUrl) ? providerEntity.GoogleBookingUrl : "",
                 HourlyRateUSD = providerEntity.HourlyRateUSD,
                 LanguageIds = _context.ProviderLanguages?
                     .Where(l => l.Language != null)

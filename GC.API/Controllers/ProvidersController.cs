@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using GlobalConnect.Application.Modules.Provider.DTOs;
+﻿using GlobalConnect.Application.Modules.Provider.DTOs;
 using GlobalConnect.Application.Modules.Provider.Interfaces;
 using GlobalConnect.Domain.Exceptions;
-using GlobalConnect.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -35,7 +32,7 @@ namespace GlobalConnect.API.Controllers
         public async Task<ActionResult> GetProvider()
         {
             var providerDto = await _providerService.GetProviderByIdAsync(GetUserId());
-         
+
             return Ok(providerDto);
         }
 

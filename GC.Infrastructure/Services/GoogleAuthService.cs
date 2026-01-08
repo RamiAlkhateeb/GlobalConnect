@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace GlobalConnect.Infrastructure.Services
 {
-    public class GoogleAuthService 
+    public class GoogleAuthService
     {
         private readonly string _clientId;
         public GoogleAuthService(IConfiguration configuration)

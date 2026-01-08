@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace GlobalConnect.Application.Modules.Identity.DTOs
 {
@@ -25,6 +20,6 @@ namespace GlobalConnect.Application.Modules.Identity.DTOs
         [Required]
         public string TimezoneId { get; set; } // e.g., "Europe/Berlin"
         [Required]
-        public string Nationality { get; set; } 
+        public string Nationality { get; set; }
     }
 }
