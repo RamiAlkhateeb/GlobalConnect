@@ -1,11 +1,5 @@
-﻿using GlobalConnect.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GlobalConnect.Domain.Models
 {
@@ -13,7 +7,7 @@ namespace GlobalConnect.Domain.Models
     {
         [Key, ForeignKey("User")]
         public int UserId { get; set; }
-        
+
 
         public string? GoogleRefreshToken { get; set; } //Used to get a new access token whenever your API needs to talk to Google.
         public string? GoogleBookingUrl { get; set; } = string.Empty; //The link to the provider’s public Google Appointment Schedule page.

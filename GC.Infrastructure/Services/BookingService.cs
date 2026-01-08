@@ -1,18 +1,11 @@
 ﻿using GlobalConnect.Application.Modules.Booking.DTOs;
 using GlobalConnect.Application.Modules.Booking.Interfaces;
-using GlobalConnect.Domain.Enums;
-using GlobalConnect.Domain.Exceptions;
 using GlobalConnect.Domain.Models;
 using GlobalConnect.Infrastructure.Data;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Services;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GlobalConnect.Infrastructure.Services
 {
@@ -23,9 +16,9 @@ namespace GlobalConnect.Infrastructure.Services
         public BookingService(GlobalConnectDbContext context)
         {
             _context = context;
-            
+
         }
-       
+
         public async Task<List<BookingDto>> GetMyAppointments(int userId)
         {
             var appointmentList = new List<BookingDto>();
@@ -33,7 +26,8 @@ namespace GlobalConnect.Infrastructure.Services
                 .Include(a => a.Provider)
                 .Where(a => a.SeekerId == userId)
                 .OrderByDescending(a => a.ScheduledAt)
-                .Select(a => new BookingDto{
+                .Select(a => new BookingDto
+                {
                     AppointmentId = a.Id,
                     ProviderName = a.Provider.Name,
                     ProviderSpecialty = a.Provider.Specialty,

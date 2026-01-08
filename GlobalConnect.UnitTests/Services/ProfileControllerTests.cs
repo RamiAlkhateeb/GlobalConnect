@@ -4,12 +4,7 @@ using GlobalConnect.Application.Modules.Provider.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GlobalConnect.UnitTests.Services
 {

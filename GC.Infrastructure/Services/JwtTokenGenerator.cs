@@ -1,16 +1,10 @@
 ﻿using Application.Modules.Identity.Interfaces;
-using BCrypt.Net;
-using GlobalConnect.Application.Common.Interfaces;
 using GlobalConnect.Domain.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace GlobalConnect.Infrastructure.Services
 {

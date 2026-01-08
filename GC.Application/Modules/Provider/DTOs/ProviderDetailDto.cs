@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlobalConnect.Application.Modules.Provider.DTOs
+﻿namespace GlobalConnect.Application.Modules.Provider.DTOs
 {
     public class ProviderDetailDto
     {
@@ -13,7 +7,7 @@ namespace GlobalConnect.Application.Modules.Provider.DTOs
         //public string PhotoUrl { get; set; }
         public string GoogleBookingUrl { get; set; }
         public string Specialty { get; set; }
-        public string? PhotoUrl { get; set; } 
+        public string? PhotoUrl { get; set; }
         public string Bio { get; set; }
         public string Nationality { get; set; }
         public decimal HourlyRateUSD { get; set; }
