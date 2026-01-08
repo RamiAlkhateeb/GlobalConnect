@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GlobalConnect.UnitTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0007239320fa69cb6a6ab457bbf5a29c8958e9c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b4b6b746793a2cbb162c761b496f25124eb2f41")]
 [assembly: System.Reflection.AssemblyProductAttribute("GlobalConnect.UnitTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GlobalConnect.UnitTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
