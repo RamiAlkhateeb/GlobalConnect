@@ -1,9 +1,7 @@
 ﻿using GlobalConnect.Application.Modules.Booking.DTOs;
 using GlobalConnect.Application.Modules.Booking.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace GlobalConnect.API.Controllers
 {
