@@ -1,4 +1,4 @@
-﻿namespace Application.Modules.Identity.DTOs
+﻿namespace GlobalConnect.Application.Modules.Identity.DTOs
 {
     public class LoginRequest
     {
