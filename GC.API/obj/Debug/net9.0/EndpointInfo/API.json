@@ -36,49 +36,6 @@
         }
       }
     },
-    "/api/Bookings": {
-      "get": {
-        "tags": [
-          "Bookings"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Bookings/sync": {
-      "post": {
-        "tags": [
-          "Bookings"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SyncRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SyncRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/SyncRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Providers/my-profile": {
       "get": {
         "tags": [
@@ -162,16 +119,6 @@
         "type": "object",
         "properties": {
           "idToken": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SyncRequest": {
-        "type": "object",
-        "properties": {
-          "accessToken": {
             "type": "string",
             "nullable": true
           }

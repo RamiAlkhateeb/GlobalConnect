@@ -17,11 +17,6 @@ namespace Application.Modules.Identity.Validators
                 .Matches("[A-Z]").WithMessage("Password must contain at least one uppercase letter.")
                 .Matches("[0-9]").WithMessage("Password must contain at least one digit.");
 
-            RuleFor(x => x.PreferredLanguage)
-                .NotEmpty().WithMessage("Preferred language is required.");
-
-            RuleFor(x => x.TimezoneId)
-                .NotEmpty().WithMessage("Timezone ID is required.");
         }
     }
 }

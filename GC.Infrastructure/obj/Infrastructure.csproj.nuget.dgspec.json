@@ -256,6 +256,10 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[8.14.0, )"
+            },
+            "Telegram.Bot": {
+              "target": "Package",
+              "version": "[22.8.1, )"
             }
           },
           "imports": [

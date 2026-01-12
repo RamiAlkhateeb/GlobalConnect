@@ -1,7 +1,6 @@
 using Application.Modules.Identity.Interfaces;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using GlobalConnect.Application.Modules.Booking.Interfaces;
 using GlobalConnect.Application.Modules.Identity.DTOs;
 using GlobalConnect.Application.Modules.Provider.Interfaces;
 using GlobalConnect.Infrastructure.Data;
@@ -28,11 +27,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProviderService, ProviderService>();
-builder.Services.AddScoped<IBookingService, BookingService>();
 // Add Services
-builder.Services.AddScoped<GoogleAuthService>();
+builder.Services.AddScoped<AdminService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddHostedService<TelegramBotService>();
 
 // Configure Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -73,9 +72,14 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins(
+            "http://localhost:4200",
+            "http://localhost:5173"
+            )
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials(); // Important for Auth;
+
     });
 });
 

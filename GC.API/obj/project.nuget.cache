@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AVW08qAqsA0=",
+  "dgSpecHash": "hQknda5Hqio=",
   "success": true,
   "projectFilePath": "D:\\Work\\GlobalConnect\\GC.API\\API.csproj",
   "expectedPackageFiles": [
@@ -37,12 +37,14 @@
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.11\\microsoft.extensions.caching.abstractions.9.0.11.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.11\\microsoft.extensions.caching.memory.9.0.11.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.11\\microsoft.extensions.configuration.abstractions.9.0.11.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.configuration.binder\\8.0.0\\microsoft.extensions.configuration.binder.8.0.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.11\\microsoft.extensions.dependencyinjection.9.0.11.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0\\microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.dependencymodel\\9.0.11\\microsoft.extensions.dependencymodel.9.0.11.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.logging\\9.0.11\\microsoft.extensions.logging.9.0.11.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.0\\microsoft.extensions.logging.abstractions.10.0.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.options\\10.0.0\\microsoft.extensions.options.10.0.0.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\8.0.0\\microsoft.extensions.options.configurationextensions.8.0.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.0\\microsoft.extensions.primitives.10.0.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.14.0\\microsoft.identitymodel.abstractions.8.14.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.14.0\\microsoft.identitymodel.jsonwebtokens.8.14.0.nupkg.sha512",
@@ -79,7 +81,8 @@
     "C:\\Users\\rami_\\.nuget\\packages\\system.reflection.metadata\\7.0.0\\system.reflection.metadata.7.0.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\system.text.json\\9.0.11\\system.text.json.9.0.11.nupkg.sha512",
-    "C:\\Users\\rami_\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512"
+    "C:\\Users\\rami_\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\telegram.bot\\22.8.1\\telegram.bot.22.8.1.nupkg.sha512"
   ],
   "logs": []
 }

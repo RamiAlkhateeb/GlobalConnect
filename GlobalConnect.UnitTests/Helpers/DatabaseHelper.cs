@@ -18,17 +18,7 @@ namespace GlobalConnect.UnitTests.Helpers
 
         public static void SeedProvider(GlobalConnectDbContext context, int id, string name, string specialty)
         {
-            context.Providers.Add(new Provider
-            {
-                UserId = id,
-                Name = name,
-                Specialty = specialty,
-                Bio = "Test Bio",
-                Nationality = "Test Country",
-                GoogleBookingUrl = "http://test.com",
-                User = new User { Id = id, Email = $"test{id}@test.com" }
-            });
-            context.SaveChanges();
+            
         }
     }
 }

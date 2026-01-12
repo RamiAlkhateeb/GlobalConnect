@@ -9,33 +9,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Application.Modules.Identity.DTOs.GoogleLoginRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "GlobalConnect.API.Controllers.BookingsController",
-    "Method": "GetMyAppointments",
-    "RelativePath": "api/Bookings",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "GlobalConnect.API.Controllers.BookingsController",
-    "Method": "SyncWithGoogle",
-    "RelativePath": "api/Bookings/sync",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "GlobalConnect.Application.Modules.Booking.DTOs.SyncRequest",
+        "Type": "GlobalConnect.Application.Modules.Identity.DTOs.GoogleLoginRequestDto",
         "IsRequired": true
       }
     ],

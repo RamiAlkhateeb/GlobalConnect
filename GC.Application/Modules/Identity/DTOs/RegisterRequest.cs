@@ -15,10 +15,10 @@ namespace GlobalConnect.Application.Modules.Identity.DTOs
         public bool IsProvider { get; set; }
 
         [Required]
-        public string PreferredLanguage { get; set; } // e.g., "en", "de"
+        public string Name { get; set; } // e.g., "en", "de"
 
         [Required]
-        public string TimezoneId { get; set; } // e.g., "Europe/Berlin"
+        public string MobileNumber { get; set; } // e.g., "Europe/Berlin"
         [Required]
         public string Nationality { get; set; }
     }

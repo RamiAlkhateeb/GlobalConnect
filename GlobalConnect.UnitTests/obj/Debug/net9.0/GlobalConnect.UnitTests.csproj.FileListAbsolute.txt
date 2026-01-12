@@ -184,3 +184,4 @@ D:\Work\GlobalConnect\GlobalConnect.UnitTests\obj\Debug\net9.0\refint\GlobalConn
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\obj\Debug\net9.0\GlobalConnect.UnitTests.pdb
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\obj\Debug\net9.0\GlobalConnect.UnitTests.genruntimeconfig.cache
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\obj\Debug\net9.0\ref\GlobalConnect.UnitTests.dll
+D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net9.0\Telegram.Bot.dll

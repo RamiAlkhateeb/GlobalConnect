@@ -1,5 +1,5 @@
-﻿using Application.Modules.Identity.DTOs;
-using Application.Modules.Identity.Interfaces;
+﻿using Application.Modules.Identity.Interfaces;
+using GlobalConnect.Application.Modules.Identity.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -15,18 +15,5 @@ namespace API.Controllers
             _authService = authService;
         }
 
-        [HttpPost("google")]
-        public async Task<IActionResult> GoogleLogin([FromBody] GoogleLoginRequestDto request)
-        {
-            try
-            {
-                var result = await _authService.LoginWithGoogleAsync(request.IdToken);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
     }
 }

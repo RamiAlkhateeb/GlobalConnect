@@ -56,20 +56,6 @@ namespace GlobalConnect.API.Controllers
             }
         }
 
-        [HttpGet("languages")]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetLanguages()
-        {
-            return Ok(await _providerService.GetAllLanguagesAsync());
-        }
-
-        [HttpGet] // GET api/provider
-        [AllowAnonymous] // Allow clients to see this without logging in? Or [Authorize] if private.
-        public async Task<IActionResult> GetAllProviders([FromQuery] string? search)
-        {
-            var providers = await _providerService.SearchProvidersAsync(search);
-            return Ok(providers);
-        }
 
 
     }

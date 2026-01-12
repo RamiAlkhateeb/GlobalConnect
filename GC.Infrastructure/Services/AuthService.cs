@@ -1,78 +1,65 @@
 ﻿using Application.Modules.Identity.Interfaces;
-using Domain.Enums;
 using GlobalConnect.Application.Modules.Identity.DTOs;
 using GlobalConnect.Domain.Models;
 using GlobalConnect.Infrastructure.Data;
 using GlobalConnect.Infrastructure.Services;
 using Google.Apis.Auth;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Services
 {
     public class AuthService : IAuthService
     {
         private readonly GlobalConnectDbContext _context;
-        private readonly GoogleAuthService _googleAuthService;
-        private readonly IJwtTokenGenerator _jwtGenerator;
+        private readonly IJwtTokenGenerator _tokenGenerator;
 
-        public AuthService(GlobalConnectDbContext context, GoogleAuthService googleAuth, IJwtTokenGenerator jwtGenerator)
+        public AuthService(GlobalConnectDbContext context, IJwtTokenGenerator tokenGenerator)
         {
             _context = context;
-            _googleAuthService = googleAuth;
-            _jwtGenerator = jwtGenerator;
+            _tokenGenerator = tokenGenerator;
         }
 
-        public async Task<AuthResponseDto> LoginWithGoogleAsync(string googleIdToken)
+        public async Task<string> RegisterAsync(RegisterRequest dto)
         {
-            // 1. Validate Google Token
-            GoogleJsonWebSignature.Payload payload;
-            try
-            {
-                payload = await _googleAuthService.ValidateAsync(googleIdToken);
-            }
-            catch
-            {
-                throw new Exception("Invalid Google Token");
-            }
+            if (_context.Users.Any(u => u.Email == dto.Email))
+                throw new Exception("Email already exists.");
 
-            // 2. Check if user exists
-            var user = await _context.Users
-                .Include(u => u.ProviderProfile)
-                .FirstOrDefaultAsync(u => u.Email == payload.Email);
+            var user = new User
+            {
+                Email = dto.Email,
+                Name = dto.Name,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                Role = "Provider",
+                IsActive = false // Explicitly inactive
+            };
 
-            // 3. Register if new
-            if (user == null)
-            {
-                user = new User
-                {
-                    PublicId = Guid.NewGuid(),
-                    Email = payload.Email,
-                    GoogleId = payload.Subject,
-                    Role = UserRole.Seeker, // Default to Client, can be changed later
-                    PhotoUrl = payload.Picture
-                };
-                _context.Users.Add(user);
-            }
-            else
-            {
-                // OPTIONAL: Update photo if it changed on Google
-                if (user.PhotoUrl != payload.Picture)
-                {
-                    user.PhotoUrl = payload.Picture;
-                }
-            }
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
+            return "Registration successful. Please wait for Admin approval.";
+        }
 
-            // 4. Generate JWT
-            var token = _jwtGenerator.GenerateToken(user);
+        public async Task<AuthResponseDto> LoginAsync(LoginRequest dto)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Email == dto.Email);
+
+            if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
+                throw new Exception("Invalid credentials.");
+
+            if (!user.IsActive && user.Role != "Admin")
+                throw new Exception("Account is not active yet. Contact Admin.");
+
+            // 4. USE YOUR GENERATOR HERE
+            var token = _tokenGenerator.GenerateToken(user);
 
             return new AuthResponseDto
             {
-                UserId = user.PublicId,
-                Email = user.Email,
                 Token = token,
-                Role = user.Role.ToString()
+                Role = user.Role,
+                Email = user.Email
             };
         }
+
+     
     }
 }

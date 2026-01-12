@@ -9,6 +9,5 @@ namespace GlobalConnect.Application.Modules.Provider.Interfaces
         Task<ProviderDetailDto?> GetProviderByIdAsync(int id);
         Task UpdateProviderProfileAsync(int providerId, UpdateProviderDto dto);
         Task<List<ProviderDetailDto>> SearchProvidersAsync(string? query);
-        Task<List<LanguageDto>> GetAllLanguagesAsync();
     }
 }
