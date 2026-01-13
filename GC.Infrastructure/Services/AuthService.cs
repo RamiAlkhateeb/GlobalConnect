@@ -41,7 +41,7 @@ namespace Infrastructure.Services
 
         public async Task<AuthResponseDto> LoginAsync(LoginRequest dto)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Email == dto.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
                 throw new Exception("Invalid credentials.");

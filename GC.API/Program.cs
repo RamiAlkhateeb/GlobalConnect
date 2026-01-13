@@ -1,3 +1,4 @@
+using Application.Modules.Admin.Interfaces;
 using Application.Modules.Identity.Interfaces;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -28,7 +29,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProviderService, ProviderService>();
 // Add Services
-builder.Services.AddScoped<AdminService>();
+builder.Services.AddScoped<IAdminService , AdminService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddHostedService<TelegramBotService>();

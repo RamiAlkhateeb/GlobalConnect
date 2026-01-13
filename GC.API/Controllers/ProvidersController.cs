@@ -41,7 +41,7 @@ namespace GlobalConnect.API.Controllers
         {
             try
             {
-
+                var userId = int.Parse(User.FindFirst("sub")?.Value ?? User.FindFirst("id")?.Value);
                 await _providerService.UpdateProviderProfileAsync(GetUserId(), dto);
 
                 return Ok(new { message = "Profile updated successfully." });

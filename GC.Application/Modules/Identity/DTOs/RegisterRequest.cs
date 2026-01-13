@@ -17,9 +17,6 @@ namespace GlobalConnect.Application.Modules.Identity.DTOs
         [Required]
         public string Name { get; set; } // e.g., "en", "de"
 
-        [Required]
-        public string MobileNumber { get; set; } // e.g., "Europe/Berlin"
-        [Required]
-        public string Nationality { get; set; }
+        
     }
 }
