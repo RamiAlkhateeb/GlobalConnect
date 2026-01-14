@@ -28,7 +28,7 @@ namespace GlobalConnect.API.Controllers
         }
 
 
-        [HttpGet("my-profile")]
+        [HttpGet]
         public async Task<ActionResult> GetProvider()
         {
             var providerDto = await _providerService.GetProviderByIdAsync(GetUserId());
@@ -36,12 +36,11 @@ namespace GlobalConnect.API.Controllers
             return Ok(providerDto);
         }
 
-        [HttpPut("profile")]
+        [HttpPut]
         public async Task<IActionResult> UpdateProfile([FromBody] UpdateProviderDto dto)
         {
             try
             {
-                var userId = int.Parse(User.FindFirst("sub")?.Value ?? User.FindFirst("id")?.Value);
                 await _providerService.UpdateProviderProfileAsync(GetUserId(), dto);
 
                 return Ok(new { message = "Profile updated successfully." });

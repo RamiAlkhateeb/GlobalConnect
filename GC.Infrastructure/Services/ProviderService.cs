@@ -29,7 +29,8 @@ namespace GlobalConnect.Infrastructure.Services
             // 2. Map Entity to DTO (Manual mapping for clarity)
             return new ProviderDetailDto
             {
-                ProviderId = providerEntity.Id,
+                Id = providerEntity.Id,
+                Email= providerEntity.Email,
                 Name = providerEntity.Name,
                 Specialty = providerEntity.Specialty,
                 Nationality = providerEntity.Nationality,
@@ -69,7 +70,7 @@ namespace GlobalConnect.Infrastructure.Services
         // 1. SEARCH FOR PROVIDERS
         public async Task<List<ProviderDetailDto>> SearchProvidersAsync(string? query)
         {
-            var allProviders = _context.Users
+            var allProviders = _context.Users.Where(p => p.Role == "Provider" && p.IsActive)
         .AsQueryable();
 
             // Optional: Filter by name or specialty if query is provided
@@ -85,7 +86,7 @@ namespace GlobalConnect.Infrastructure.Services
             return await allProviders
                 .Select(p => new ProviderDetailDto
                 {
-                    ProviderId = p.Id,
+                    Id = p.Id,
                     Name = p.Name,
                     Nationality = p.Nationality,
                     Specialty = p.Specialty,

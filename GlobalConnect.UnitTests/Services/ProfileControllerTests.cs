@@ -68,7 +68,7 @@ namespace GlobalConnect.UnitTests.Services
             // Arrange
             var fakeProfile = new ProviderDetailDto
             {
-                ProviderId = 55,
+                Id = 55,
                 Name = "Dr. Original"
             };
 

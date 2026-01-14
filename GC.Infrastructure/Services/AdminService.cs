@@ -23,11 +23,15 @@ namespace GlobalConnect.Infrastructure.Services
                 .Where(u => u.Role == "Provider")
                 .Select(u => new ProviderDetailDto
                 {
-                    ProviderId = u.Id,
+                    Id = u.Id,
                     Name = u.Name,
                     MobileNumber = u.MobileNumber,
                     Specialty = u.Specialty,
-                    IsActive = u.IsActive
+                    IsActive = u.IsActive,
+                    GoogleBookingUrl = u.GoogleBookingUrl,
+                    PhotoUrl = u.PhotoUrl,
+                    Bio = u.Bio,
+                    Email = u.Email,
                 })
                 .ToListAsync();
         }
