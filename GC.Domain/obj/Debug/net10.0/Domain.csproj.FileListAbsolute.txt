@@ -1,0 +1,13 @@
+D:\Work\GlobalConnect\GC.Domain\bin\Debug\net10.0\Domain.deps.json
+D:\Work\GlobalConnect\GC.Domain\bin\Debug\net10.0\Domain.dll
+D:\Work\GlobalConnect\GC.Domain\bin\Debug\net10.0\Domain.pdb
+D:\Work\GlobalConnect\GC.Domain\obj\Debug\net10.0\Domain.csproj.AssemblyReference.cache
+D:\Work\GlobalConnect\GC.Domain\obj\Debug\net10.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\GlobalConnect\GC.Domain\obj\Debug\net10.0\Domain.AssemblyInfoInputs.cache
+D:\Work\GlobalConnect\GC.Domain\obj\Debug\net10.0\Domain.AssemblyInfo.cs
+D:\Work\GlobalConnect\GC.Domain\obj\Debug\net10.0\Domain.csproj.CoreCompileInputs.cache
+D:\Work\GlobalConnect\GC.Domain\obj\Debug\net10.0\Domain.sourcelink.json
+D:\Work\GlobalConnect\GC.Domain\obj\Debug\net10.0\Domain.dll
+D:\Work\GlobalConnect\GC.Domain\obj\Debug\net10.0\refint\Domain.dll
+D:\Work\GlobalConnect\GC.Domain\obj\Debug\net10.0\Domain.pdb
+D:\Work\GlobalConnect\GC.Domain\obj\Debug\net10.0\ref\Domain.dll

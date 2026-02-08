@@ -1,0 +1,16 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/src/">
+    <Project Path="GC.API/API.csproj" />
+    <Project Path="GC.Application/Application.csproj" />
+    <Project Path="GC.Domain/Domain.csproj" />
+    <Project Path="GC.Infrastructure/Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="GlobalConnect.UnitTests/GlobalConnect.UnitTests.csproj" />
+  </Folder>
+</Solution>
