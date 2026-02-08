@@ -1,0 +1,16 @@
+{
+  "NAV": {
+    "HOME": "Startseite",
+    "SEARCH": "Suche",
+    "PROFILE": "Profil",
+    "SETTINGS": "Einstellungen"
+  },
+  "SETTINGS": {
+    "TITLE": "Einstellungen",
+    "DARK_MODE": "Dunkelmodus",
+    "LANGUAGE": "Sprache"
+  },
+  "COMMON": {
+    "CLOSE": "Schließen"
+  }
+}

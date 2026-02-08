@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <header>
+        <h1>Provider Management</h1>
+        <p>Approve or deactivate provider accounts.</p>
+    </header>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Specialty</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users()">
+                    <td class="name-col">{{ user.name }}</td>
+                    <td>{{ user.mobileNumber }}</td>
+                    <td>{{ user.specialty || '-' }}</td>
+                    <td>
+                        <span class="badge" [class.active]="user.isActive" [class.pending]="!user.isActive">
+                            {{ user.isActive ? 'Active' : 'Pending' }}
+                        </span>
+                    </td>
+                    <td>
+                        <button (click)="toggleStatus(user)" [class.btn-activate]="!user.isActive"
+                            [class.btn-deactivate]="user.isActive" [disabled]="isUpdating === user.id">
+                            {{ user.isActive ? 'Deactivate' : 'Activate' }}
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div *ngIf="users().length === 0" class="empty-state">
+            No providers found.
+        </div>
+    </div>
+</div>
