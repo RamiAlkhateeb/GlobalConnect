@@ -37,5 +37,33 @@ namespace API.Controllers
 
             return Ok(user);
         }
+
+        [HttpGet("providers")]
+        public async Task<IActionResult> GetAllActiveProviders([FromQuery] string? search)
+        {
+            // Filter: Only Providers, Only Active (Approved)
+            var query = _context.Users
+                .Where(u => u.Role == "Provider" && u.IsActive);
+
+            // Optional Search Logic
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(u => u.Name.Contains(search) || u.Specialty.Contains(search));
+            }
+
+            var providers = await query
+                .Select(u => new
+                {
+                    u.Id,
+                    u.Name,
+                    u.Specialty,
+                    u.PhotoUrl, // Ensure you return the photo URL
+                    u.Nationality,
+                    u.Bio
+                })
+                .ToListAsync();
+
+            return Ok(providers);
+        }
     }
 }

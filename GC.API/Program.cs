@@ -4,6 +4,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using GlobalConnect.Application.Modules.Identity.DTOs;
 using GlobalConnect.Application.Modules.Provider.Interfaces;
+using GlobalConnect.Domain.Models;
 using GlobalConnect.Infrastructure.Data;
 using GlobalConnect.Infrastructure.Services;
 using Infrastructure.Services;
@@ -54,17 +55,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequest>(); // Finds all validators
 
+//builder.Services.AddDbContext<GlobalConnectDbContext>(options =>
+//{
+//    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+//    //options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnectionLocal"));
+//});
 builder.Services.AddDbContext<GlobalConnectDbContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-    //options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnectionLocal"));
-});
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("CorsPolicy", policy =>
     {
-        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000" , "http://localhost:5173");
     });
 });
 
@@ -100,5 +103,94 @@ app.UseCors("CorsPolicy");
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+// SEED DATA
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<GlobalConnectDbContext>();
+    // Auto-migrate (creates .db file if not exists)
+    context.Database.Migrate();
+
+    if (!context.Users.Any())
+    {
+        // Password: "password123" (Hashed with BCrypt)
+        string defaultHash = BCrypt.Net.BCrypt.HashPassword("password123");
+
+        var providers = new List<User>
+        {
+            // 1. Admin User
+            new User {
+                Name = "Admin",
+                Email = "admin@example.com",
+                MobileNumber = "0000",
+                PasswordHash = defaultHash,
+                Role = "Admin",
+                IsActive = true
+            },
+
+            // 2. Active Provider (Cardiologist)
+            new User {
+                Name = "Dr. Ahmed Ali",
+                Email = "Ahmed@example.com",
+                MobileNumber = "01012345678",
+                PasswordHash = defaultHash,
+                Role = "Provider",
+                Specialty = "Cardiologist",
+                Bio = "Senior consultant with 15 years experience in interventional cardiology.",
+                Nationality = "Egypt",
+                GoogleBookingUrl = "https://calendar.google.com",
+                IsActive = true,
+                PhotoUrl = "https://randomuser.me/api/portraits/men/32.jpg"
+            },
+
+            // 3. Active Provider (Dermatologist)
+            new User {
+                Name = "Dr. Sara Hassan",
+                Email = "Sara@example.com",
+                MobileNumber = "01112345678",
+                PasswordHash = defaultHash,
+                Role = "Provider",
+                Specialty = "Dermatologist",
+                Bio = "Specialist in cosmetic dermatology and laser treatments.",
+                Nationality = "Egypt",
+                GoogleBookingUrl = "https://calendar.google.com",
+                IsActive = true,
+                PhotoUrl = "https://randomuser.me/api/portraits/women/44.jpg"
+            },
+
+             // 4. Active Provider (Psychiatrist)
+            new User {
+                Name = "Dr. Omar Khaled",
+                Email = "omar@example.com",
+                MobileNumber = "01212345678",
+                PasswordHash = defaultHash,
+                Role = "Provider",
+                Specialty = "Psychiatrist",
+                Bio = "Helping you achieve mental wellness and balance.",
+                Nationality = "Saudi Arabia",
+                GoogleBookingUrl = "https://calendar.google.com",
+                IsActive = true,
+                PhotoUrl = "https://randomuser.me/api/portraits/men/85.jpg"
+            },
+
+            // 5. Pending Provider (Inactive - won't show on Home, shows in Admin)
+            new User {
+                Name = "Dr. New User",
+                Email = "newuser@exmaple.com",
+                MobileNumber = "01512345678",
+                PasswordHash = defaultHash,
+                Role = "Provider",
+                Specialty = "General Practitioner",
+                IsActive = false, // <--- Pending Admin Approval
+                PhotoUrl = null
+            }
+        };
+
+        context.Users.AddRange(providers);
+        context.SaveChanges();
+    }
+}
+
 
 app.Run();

@@ -1,7 +1,0 @@
-<nav class="navbar">
-    <div class="brand">RemoteCare</div>
-    <div class="menu" *ngIf="currentUser()">
-        <span class="welcome">Hello, {{ currentUser()?.name }}</span>
-        <button (click)="logout()" class="btn-logout">Logout</button>
-    </div>
-</nav>

@@ -1,20 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "p7xlLpNs6Xw=",
+  "dgSpecHash": "XRJ/WBk/XAc=",
   "success": true,
   "projectFilePath": "D:\\Work\\GlobalConnect\\GC.Domain\\Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.11\\microsoft.entityframeworkcore.9.0.11.nupkg.sha512",
-    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\9.0.11\\microsoft.entityframeworkcore.abstractions.9.0.11.nupkg.sha512",
-    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\9.0.11\\microsoft.entityframeworkcore.analyzers.9.0.11.nupkg.sha512",
-    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.11\\microsoft.extensions.caching.abstractions.9.0.11.nupkg.sha512",
-    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.11\\microsoft.extensions.caching.memory.9.0.11.nupkg.sha512",
-    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.11\\microsoft.extensions.dependencyinjection.9.0.11.nupkg.sha512",
-    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.11\\microsoft.extensions.dependencyinjection.abstractions.9.0.11.nupkg.sha512",
-    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.logging\\9.0.11\\microsoft.extensions.logging.9.0.11.nupkg.sha512",
-    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.11\\microsoft.extensions.logging.abstractions.9.0.11.nupkg.sha512",
-    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.options\\9.0.11\\microsoft.extensions.options.9.0.11.nupkg.sha512",
-    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.11\\microsoft.extensions.primitives.9.0.11.nupkg.sha512"
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.3\\microsoft.entityframeworkcore.10.0.3.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.3\\microsoft.entityframeworkcore.abstractions.10.0.3.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.3\\microsoft.entityframeworkcore.analyzers.10.0.3.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\10.0.3\\microsoft.extensions.caching.abstractions.10.0.3.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.caching.memory\\10.0.3\\microsoft.extensions.caching.memory.10.0.3.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\10.0.3\\microsoft.extensions.dependencyinjection.10.0.3.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.3\\microsoft.extensions.dependencyinjection.abstractions.10.0.3.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.logging\\10.0.3\\microsoft.extensions.logging.10.0.3.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.3\\microsoft.extensions.logging.abstractions.10.0.3.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.options\\10.0.3\\microsoft.extensions.options.10.0.3.nupkg.sha512",
+    "C:\\Users\\rami_\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.3\\microsoft.extensions.primitives.10.0.3.nupkg.sha512"
   ],
   "logs": []
 }

@@ -139,9 +139,11 @@ D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\runtimes\linux-a
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\runtimes\linux-mips64\native\libe_sqlite3.so
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
+D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\runtimes\linux-musl-riscv64\native\libe_sqlite3.so
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\runtimes\linux-musl-s390x\native\libe_sqlite3.so
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
+D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\runtimes\linux-riscv64\native\libe_sqlite3.so
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\runtimes\linux-s390x\native\libe_sqlite3.so
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\runtimes\linux-x64\native\libe_sqlite3.so
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\runtimes\linux-x86\native\libe_sqlite3.so
