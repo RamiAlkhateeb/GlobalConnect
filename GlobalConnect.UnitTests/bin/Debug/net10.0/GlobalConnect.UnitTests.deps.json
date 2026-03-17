@@ -20,17 +20,6 @@
           "GlobalConnect.UnitTests.dll": {}
         }
       },
-      "AutoMapper/16.0.0": {
-        "dependencies": {
-          "Microsoft.IdentityModel.JsonWebTokens": "8.14.0"
-        },
-        "runtime": {
-          "lib/net10.0/AutoMapper.dll": {
-            "assemblyVersion": "16.0.0.0",
-            "fileVersion": "16.0.0.0"
-          }
-        }
-      },
       "BCrypt.Net-Core/1.6.0": {
         "runtime": {
           "lib/netstandard2.0/BCrypt.Net-Core.dll": {
@@ -882,7 +871,6 @@
       "API/1.0.0": {
         "dependencies": {
           "Application": "1.0.0",
-          "AutoMapper": "16.0.0",
           "Domain": "1.0.0",
           "FluentValidation.AspNetCore": "11.3.1",
           "Google.Apis.Calendar.v3": "1.73.0.3993",
@@ -901,7 +889,6 @@
       },
       "Application/1.0.0": {
         "dependencies": {
-          "AutoMapper": "16.0.0",
           "Domain": "1.0.0",
           "FluentValidation": "12.1.1",
           "Google.Apis.Calendar.v3": "1.73.0.3993"
@@ -927,7 +914,6 @@
       "Infrastructure/1.0.0": {
         "dependencies": {
           "Application": "1.0.0",
-          "AutoMapper": "16.0.0",
           "BCrypt.Net-Core": "1.6.0",
           "Domain": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.11",
@@ -952,13 +938,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "AutoMapper/16.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-JIhkKjEsUcIPPbCR7cGQlH3a2ySLW2Tof6CXcJb5WbaoUkniREpJOlC2ROkaM/nck2b5JjptLIUdHvbItGvLGQ==",
-      "path": "automapper/16.0.0",
-      "hashPath": "automapper.16.0.0.nupkg.sha512"
     },
     "BCrypt.Net-Core/1.6.0": {
       "type": "package",

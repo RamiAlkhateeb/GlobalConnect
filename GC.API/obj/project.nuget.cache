@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "dUVhowDJ8c4=",
+  "dgSpecHash": "3yeJGcK3vFI=",
   "success": true,
   "projectFilePath": "D:\\Work\\GlobalConnect\\GC.API\\API.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\rami_\\.nuget\\packages\\automapper\\16.0.0\\automapper.16.0.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.1\\fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",

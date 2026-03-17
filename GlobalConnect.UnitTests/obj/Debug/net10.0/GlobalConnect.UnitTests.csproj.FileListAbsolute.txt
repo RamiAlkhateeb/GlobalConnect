@@ -15,7 +15,6 @@ D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\GlobalConnect.Un
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\GlobalConnect.UnitTests.runtimeconfig.json
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\GlobalConnect.UnitTests.dll
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\GlobalConnect.UnitTests.pdb
-D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\AutoMapper.dll
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\BCrypt.Net-Core.dll
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\Castle.Core.dll
 D:\Work\GlobalConnect\GlobalConnect.UnitTests\bin\Debug\net10.0\FluentAssertions.dll

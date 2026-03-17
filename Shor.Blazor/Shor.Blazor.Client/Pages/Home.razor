@@ -1,0 +1,111 @@
+@page "/"
+@rendermode InteractiveAuto
+@using Shor.Blazor.Client.Models
+@using Shor.Blazor.Client.Services
+@inject ProviderApiService ProviderService
+
+<PageTitle>Shor | Find a Specialist</PageTitle>
+
+<div class="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <header class="bg-white border-b border-slate-200 py-16 px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+            Find Your <span class="text-blue-600">Shor</span>
+        </h1>
+        <p class="text-slate-500 text-lg mb-8 max-w-2xl mx-auto">
+            Connect with top-rated doctors and specialists instantly.
+        </p>
+
+        <form @onsubmit="SearchProviders" class="max-w-xl mx-auto flex shadow-sm rounded-full border border-slate-200 bg-white overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all">
+            <input @bind="SearchTerm" 
+                   class="w-full pl-6 pr-4 py-4 text-slate-800 focus:outline-none" 
+                   placeholder="Search by name or specialty..." />
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 font-semibold transition-colors">
+                Search
+            </button>
+        </form>
+    </header>
+
+    <main class="max-w-7xl mx-auto w-full py-12 px-4 flex-1">
+        @if (isLoading)
+        {
+            <div class="flex justify-center items-center py-20 text-slate-400">
+                <span class="animate-pulse text-lg tracking-widest">Loading specialists...</span>
+            </div>
+        }
+        else if (!providers.Any())
+        {
+            <div class="text-center py-20 bg-white rounded-2xl border border-dashed border-slate-300">
+                <p class="text-slate-500 text-lg">No providers found matching "@SearchTerm".</p>
+                <button @onclick="ClearSearch" class="mt-4 text-blue-600 font-medium hover:underline">
+                    Clear Search
+                </button>
+            </div>
+        }
+        else
+        {
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                @foreach (var provider in providers)
+                {
+                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group flex flex-col">
+                        <div class="h-48 bg-slate-100 overflow-hidden relative">
+                            <img src="@(string.IsNullOrEmpty(provider.PhotoUrl) ? "/assets/default-avatar.png" : provider.PhotoUrl)" 
+                                 alt="@provider.Name" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h3 class="font-bold text-lg text-slate-900 truncate">@provider.Name</h3>
+                            <p class="text-blue-600 font-medium text-sm mb-4">@provider.Specialty</p>
+                            
+                            <div class="mt-auto">
+                                @if (!string.IsNullOrEmpty(provider.Nationality))
+                                {
+                                    <span class="inline-block bg-slate-50 border border-slate-200 text-slate-600 text-xs px-2 py-1 rounded-md mb-4">
+                                        📍 @provider.Nationality
+                                    </span>
+                                }
+                                <a href="/view/@provider.Id" class="block text-center w-full py-2.5 rounded-lg border border-slate-200 text-slate-700 font-medium hover:bg-slate-50 hover:text-blue-600 transition-colors">
+                                    View Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </main>
+</div>
+
+@code {
+    private List<ProviderSummaryDto> providers = new();
+    private string SearchTerm { get; set; } = string.Empty;
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProviders();
+    }
+
+    private async Task SearchProviders()
+    {
+        await LoadProviders(SearchTerm);
+    }
+
+    private async Task ClearSearch()
+    {
+        SearchTerm = string.Empty;
+        await LoadProviders();
+    }
+
+    private async Task LoadProviders(string? search = null)
+    {
+        isLoading = true;
+        try
+        {
+            providers = await ProviderService.GetProvidersAsync(search);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}

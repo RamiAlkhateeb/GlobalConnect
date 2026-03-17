@@ -78,7 +78,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
             "http://localhost:4200",
-            "http://localhost:5173"
+            "http://localhost:5173",
+            "http://localhost:5288"
             )
               .AllowAnyHeader()
               .AllowAnyMethod()
@@ -126,7 +127,10 @@ using (var scope = app.Services.CreateScope())
                 MobileNumber = "0000",
                 PasswordHash = defaultHash,
                 Role = "Admin",
-                IsActive = true
+                Nationality = "Saudi Arabia",
+                IsActive = true,
+                PhotoUrl = "https://randomuser.me/api/portraits/women/44.jpg"
+
             },
 
             // 2. Active Provider (Cardiologist)
@@ -182,8 +186,9 @@ using (var scope = app.Services.CreateScope())
                 PasswordHash = defaultHash,
                 Role = "Provider",
                 Specialty = "General Practitioner",
+                Nationality = "Saudi Arabia",
                 IsActive = false, // <--- Pending Admin Approval
-                PhotoUrl = null
+                PhotoUrl = "",
             }
         };
 

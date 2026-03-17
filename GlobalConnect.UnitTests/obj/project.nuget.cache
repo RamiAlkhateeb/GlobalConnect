@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "YnNGJmXL9RU=",
+  "dgSpecHash": "IbSR7awECLA=",
   "success": true,
   "projectFilePath": "D:\\Work\\GlobalConnect\\GlobalConnect.UnitTests\\GlobalConnect.UnitTests.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\rami_\\.nuget\\packages\\automapper\\16.0.0\\automapper.16.0.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\rami_\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",

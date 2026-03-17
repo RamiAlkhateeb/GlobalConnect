@@ -3,3 +3,28 @@
 .vs/
 
 node_modules/
+
+# Build and release folders
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+
+# Compiled Binaries
+*.dll
+*.exe
+*.pdb
+*.cache
+*.resources.dll
+
+# Visual Studio / VS Code local user settings
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.user
+*.suo
+
+# OS generated files
+.DS_Store
+Thumbs.db
